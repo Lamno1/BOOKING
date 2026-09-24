@@ -1,0 +1,44 @@
+# Node
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs / temp
+*.log
+tmp/
+temp/
+.cache/
+
+# Visual QA temporary output
+artifacts/visual-qa/
+playwright-report/
+test-results/
+
+# Blender temporary/autosave
+*.blend1
+*.blend2
+*.blend@
+*.blend~
+
+# Large raw geospatial downloads
+assets/context/vungtau/raw/
+
+# Generated intermediate GIS
+assets/context/vungtau/intermediate/

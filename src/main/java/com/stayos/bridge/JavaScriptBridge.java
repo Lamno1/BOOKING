@@ -1,0 +1,1 @@
+package com.stayos.bridge; import com.stayos.service.HealthService; public final class JavaScriptBridge {private final HealthService s=new HealthService(); public String getHealthDto(){var h=s.health();return "{\"status\":\""+h.status()+"\",\"version\":\""+h.version()+"\"}";} public void log(String m){System.out.println("[JS] "+m);}}

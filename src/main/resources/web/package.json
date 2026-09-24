@@ -1,0 +1,5 @@
+{
+  "name":"stayos-experience-ui","private":true,"version":"0.1.0","type":"module",
+  "scripts":{"build":"vite build","dev":"vite","visual:shot":"playwright test","visual:test":"playwright test"},
+  "dependencies":{"three":"^0.169.0"},"devDependencies":{"@playwright/test":"^1.49.0","@vitejs/plugin-basic-ssl":"^1.1.0","typescript":"^5.6.3","vite":"^5.4.10"}
+}
