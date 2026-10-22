@@ -80,7 +80,7 @@ A homestay or small hotel site is nowhere near these limits. The real ceiling is
 
 ## Not done yet
 
-- Admin password: the main server's admin still uses the published demo password. Change it in Tài khoản before going public (the server refuses to start in public mode until then).
+- Admin password: the main server's admin still uses the published demo password. Change it in the staff console under "Bảo mật tài khoản" (a red banner links there); the server refuses public mode until then.
 - Address: street and number are not set; city (TP. Hồ Chí Minh) and hotline (0335858424) are.
 - Photos: AI illustrations exist for Studio and Phòng bốn only; other room types show the amenity diagram. Real photos should replace all of them.
 - The walking tour service is paused (its route was in Vũng Tàu) until a Ho Chi Minh City offer is confirmed; prices of other services are unchanged and still need the owner's confirmation.

@@ -114,6 +114,7 @@ public final class AuthServer {
     r.create("/api/reviews",Access.SIGNED_IN,c->booking.createReview(c.user(),c.input())).limited();
     // Staff console (each service call re-checks the admin role)
     r.get("/api/admin/state",Access.SIGNED_IN,c->booking.state(c.user(),true));
+    r.get("/api/admin/security",Access.SIGNED_IN,c->{if(!"admin".equals(c.user().role()))throw new Failure(403,"Bạn không có quyền quản trị.");return Map.of("defaultPassword",auth.usesDefaultPassword(c.user()));});
     r.get("/api/admin/users",Access.SIGNED_IN,c->Map.of("users",auth.users(c.user())));
     r.post("/api/admin/users/status",Access.SIGNED_IN,c->{auth.setStatus(c.user(),BookingService.text(c.input(),"email",254),BookingService.text(c.input(),"status",20));return Map.of("ok",true);});
     r.post("/api/admin/users/reset-code",Access.SIGNED_IN,c->Map.of("code",auth.issueResetCode(c.user(),BookingService.text(c.input(),"email",254)),"expiresInMinutes",30)).limited();

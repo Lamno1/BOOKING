@@ -142,6 +142,17 @@ public final class AuthService implements AutoCloseable {
     }catch(SQLException e){throw new IllegalStateException("Account storage unavailable",e);}
     return found;
   }
+  /** Whether this account's password is a published demo default (hashing runs outside the lock). */
+  public boolean usesDefaultPassword(User user){
+    String salt,stored;
+    synchronized(this){
+      try(var s=connection.prepareStatement("SELECT salt,password_hash FROM users WHERE email=?")){
+        s.setString(1,user.email());try(var r=s.executeQuery()){if(!r.next())return false;salt=r.getString(1);stored=r.getString(2);}
+      }catch(SQLException e){throw new IllegalStateException("Account storage unavailable",e);}
+    }
+    for(String candidate:KNOWN_DEFAULTS)if(verify(candidate,salt,stored))return true;
+    return false;
+  }
   /** Expired sessions are dropped hourly, not only at start-up. */
   public synchronized int purgeExpiredSessions(){
     try(var s=connection.prepareStatement("DELETE FROM auth_sessions WHERE expires_at<?")){s.setLong(1,System.currentTimeMillis());return s.executeUpdate();}

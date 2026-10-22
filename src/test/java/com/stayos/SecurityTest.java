@@ -141,6 +141,18 @@ class SecurityTest {
     assertEquals(200,login("guest@example.test","brand-new-password").statusCode());
   }
 
+  @Test void adminSeesWhetherItStillUsesTheDemoPasswordAndCanChangeIt()throws Exception{
+    String url="jdbc:sqlite:"+temp.resolve("demo-admin.sqlite");
+    auth=new AuthService(url,null,null,true);bookings=new BookingService(url);server=new AuthServer(auth,bookings,0);server.start();
+    String admin=login("admin@stayos.demo","change-me-now").headers().firstValue("Set-Cookie").orElseThrow().split(";")[0];
+    assertTrue(get("/api/admin/security","Cookie",admin).body().contains("\"defaultPassword\":true"));
+    assertEquals(200,post("/api/auth/password","{\"currentPassword\":\"change-me-now\",\"newPassword\":\"a-long-unique-passphrase\"}",admin).statusCode());
+    String fresh=login("admin@stayos.demo","a-long-unique-passphrase").headers().firstValue("Set-Cookie").orElseThrow().split(";")[0];
+    assertTrue(get("/api/admin/security","Cookie",fresh).body().contains("\"defaultPassword\":false"));
+    String guest=login("guest@stayos.demo","stayos-demo").headers().firstValue("Set-Cookie").orElseThrow().split(";")[0];
+    assertEquals(403,get("/api/admin/security","Cookie",guest).statusCode());
+  }
+
   @Test void configurationRejectsMalformedOrigins(){
     assertThrows(IllegalArgumentException.class,()->ServerConfig.fromEnvironment(Map.of("STAYOS_ALLOWED_ORIGINS","javascript:alert(1)")));
     assertTrue(ServerConfig.fromEnvironment(Map.of("STAYOS_ALLOWED_ORIGINS","https://stayos.vn, https://www.stayos.vn")).origins().contains("https://www.stayos.vn"));

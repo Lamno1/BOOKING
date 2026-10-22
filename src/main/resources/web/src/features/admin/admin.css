@@ -40,3 +40,6 @@ td .ops-note-toggle{min-height:32px;margin-top:6px;padding:4px 10px;font-size:11
 .ops-reset{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
 .ops-reset small{flex-basis:100%}
 .ops-code{font:600 18px ui-monospace,Consolas,monospace;letter-spacing:.12em;padding:4px 8px;border:1px dashed #28573e;border-radius:4px}
+.ops-security form{display:grid;gap:16px;max-width:460px}
+.ops-security label{display:grid;gap:6px}
+.ops-security-banner button{margin-left:12px}
