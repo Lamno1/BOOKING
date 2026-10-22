@@ -1,0 +1,427 @@
+/* Results, room calendar and booking box — B palette (warm charcoal, sage accent). */
+.booking-app{--j-accent-ink:#252b21;--j-free:#9fc49a;--j-full:#6c5b4f;--j-focus:#e8f1d2}
+
+/* Search bar: same surface and accent as the rest of B, not the legacy navy/gold. */
+.booking-app .journey-search .stay-search{display:grid;grid-template-columns:1.3fr 1fr 1fr .9fr auto;gap:14px;align-items:end}
+.booking-app .journey-search .stay-search label{display:grid;gap:7px;font-size:12px;letter-spacing:.04em;color:var(--j-muted)}
+.booking-app .journey-search input,.booking-app .journey-search select{min-height:48px;background:var(--j-bg);color:var(--j-ink);border:1px solid var(--j-line);border-radius:6px;padding:0 12px;font:16px 'Segoe UI',Arial,sans-serif}
+.booking-app .journey-search .gold-button{min-height:48px;background:var(--j-accent);color:var(--j-accent-ink);border:0;border-radius:6px;padding:0 24px;font-weight:600;cursor:pointer}
+.booking-app .account-button{background:transparent;border:1px solid var(--j-line);color:var(--j-ink)}
+.booking-app .account-avatar{border-color:var(--j-muted)}
+
+.results-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px}
+.booking-app .results-head h2{font:400 clamp(28px,3vw,42px)/1.3 'Segoe UI',Arial,sans-serif;color:var(--j-ink);letter-spacing:-.035em;margin:10px 0 0}
+.results-sort{display:grid;gap:6px;font-size:12px;color:var(--j-muted);min-width:210px}
+.results-sort select,.chip-select select,.results-search input{min-height:44px;background:var(--j-surface);color:var(--j-ink);border:1px solid var(--j-line);border-radius:6px;padding:0 12px;font:15px 'Segoe UI',Arial,sans-serif;color-scheme:dark}
+.results-filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:16px 0;border-block:1px solid var(--j-line)}
+.segmented{display:inline-flex;border:1px solid var(--j-line);border-radius:999px;padding:3px;gap:2px}
+.segmented button,.chip{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .2s,border-color .2s,color .2s}
+.chip{border-color:var(--j-line)}
+.segmented button:hover,.chip:hover{background:var(--j-surface)}
+.segmented button[aria-pressed=true],.chip[aria-pressed=true]{background:var(--j-accent);color:var(--j-accent-ink);border-color:var(--j-accent)}
+.chip-select{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--j-muted)}
+.chip-select select{min-height:40px;border-radius:999px}
+.results-search{margin-left:auto;min-width:220px}.results-search input{width:100%}
+.results-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:16px 0 22px;font-size:14px;color:var(--j-muted)}
+.results-summary p{margin:0}
+.results-summary button,.results-empty button,.result-nearest button,.results-alert button{min-height:40px;padding:0 14px;border-radius:6px;border:1px solid var(--j-line);background:transparent;color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.results-summary button:hover,.results-empty button:hover,.result-nearest button:hover{background:var(--j-surface)}
+.results-recent{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:22px;font-size:13px;color:var(--j-muted)}
+.results-recent button{min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--j-line);background:var(--j-surface);color:var(--j-ink);font-size:13px;cursor:pointer}
+.results-alert{color:#ffcfb8}
+
+.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 26px}
+.result-card{display:flex;flex-direction:column;min-width:0}
+.result-media{position:relative;border-radius:10px;overflow:hidden}
+.result-media .journey-photo,.result-media .journey-placeholder{aspect-ratio:4/3;border-radius:10px}
+.result-media .journey-placeholder p{display:none}
+.result-media .journey-placeholder .room-visual{max-width:none;padding:14px;margin:0 12%}
+.result-save{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:0;background:#1b201ad9;color:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s}
+.result-save:hover{background:#1b201a}
+.result-save[aria-pressed=true]{color:#f2a99a}
+.result-body{display:flex;flex-direction:column;gap:8px;padding-top:16px;flex:1}
+.result-eyebrow{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--j-muted)}
+.booking-app .result-body h3{margin:0;font:500 21px/1.35 'Segoe UI',Arial,sans-serif;letter-spacing:-.01em}
+.result-body h3 button{all:unset;cursor:pointer;color:var(--j-ink)}
+.result-body h3 button:hover{text-decoration:underline;text-underline-offset:4px}
+.result-body h3 button:focus-visible{outline:3px solid var(--j-focus);outline-offset:3px}
+.result-facts{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0;padding:0;list-style:none;font-size:14px;color:var(--j-ink)}
+.result-facts li{display:inline-flex;align-items:center;gap:6px}
+.result-features{margin:0;font-size:13px;color:var(--j-muted)}
+.result-perk{display:flex;align-items:center;gap:6px;margin:0;font-size:13px;color:var(--j-free)}
+.result-footer{margin-top:auto;padding-top:14px;border-top:1px solid var(--j-line);display:grid;gap:10px}
+.result-price strong{font-size:20px;font-weight:600;color:var(--j-ink)}
+.result-price small{font-size:13px;font-weight:400;color:var(--j-muted)}
+.result-price span{display:block;font-size:13px;color:var(--j-muted);margin-top:2px}
+.result-status{display:flex;align-items:center;gap:6px;margin:0;font-size:13px;color:var(--j-muted)}
+.result-status.is-free{color:var(--j-free)}
+.result-status.is-full,.result-status.is-closed{color:#e9b79b}
+.result-nearest{display:grid;gap:8px}.result-nearest p{margin:0;font-size:13px;color:var(--j-ink)}
+.result-open{min-height:44px;border-radius:6px;border:1px solid var(--j-accent);background:transparent;color:var(--j-accent);font:600 14px 'Segoe UI',Arial,sans-serif;cursor:pointer;transition:background .2s,color .2s}
+.result-open:hover{background:var(--j-accent);color:var(--j-accent-ink)}
+.result-card.is-unavailable .result-media{opacity:.72}
+.results-empty{padding:50px 0;text-align:center;color:var(--j-muted)}.results-empty h3{color:var(--j-ink);font-size:22px}
+
+/* Room detail */
+.detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
+.detail-actions button{min-height:42px;display:inline-flex;align-items:center;gap:8px;padding:0 14px;border-radius:999px;border:1px solid var(--j-line);background:transparent;color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.detail-actions button[aria-pressed=true]{color:#f2a99a;border-color:#f2a99a88}
+.detail-shared{font-size:13px;color:var(--j-free);overflow-wrap:anywhere}
+.detail-book{position:sticky;bottom:-1px;display:flex;align-items:center;justify-content:space-between;gap:18px;margin:26px -4px -4px;padding:16px 4px;background:var(--j-bg);border-top:1px solid var(--j-line);z-index:2}
+.detail-book strong{display:block;font-size:20px}.detail-book small{font-weight:400;font-size:13px;color:var(--j-muted)}
+.detail-book span{display:block;font-size:13px;color:var(--j-muted)}
+.detail-book .journey-action{margin:0;flex-shrink:0}
+
+/* Availability calendar */
+.avail-calendar{margin:26px 0;padding:22px;border:1px solid var(--j-line);border-radius:10px}
+.avail-head{display:flex;justify-content:space-between;align-items:center}
+.booking-app .avail-head h3{margin:0;font:500 20px 'Segoe UI',Arial,sans-serif}
+.avail-head div{display:flex;gap:8px}
+.avail-head button{width:44px;height:44px;border-radius:50%;border:1px solid var(--j-line);background:transparent;color:var(--j-ink);display:grid;place-items:center;cursor:pointer}
+.avail-head button:disabled{opacity:.35;cursor:not-allowed}
+.avail-months{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:14px}
+.avail-month h4{margin:0 0 10px;font:500 15px 'Segoe UI',Arial,sans-serif;text-transform:capitalize;color:var(--j-ink)}
+.avail-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.avail-weekday{font-size:11px;text-align:center;color:var(--j-muted);padding:4px 0}
+.avail-day{aspect-ratio:1;min-height:40px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer;transition:background .15s}
+.avail-day:hover:not(:disabled){border-color:var(--j-accent)}
+.avail-day:disabled{color:#7d8475;cursor:not-allowed}
+.avail-day.is-full{color:#c9a995;text-decoration:line-through;background:#3a332d}
+.avail-day.is-today{box-shadow:inset 0 -2px 0 var(--j-muted)}
+.avail-day.in-range{background:#4a5440;border-radius:0}
+.avail-day.is-start,.avail-day.is-end{background:var(--j-accent);color:var(--j-accent-ink);font-weight:600;text-decoration:none}
+.avail-day:focus-visible,.avail-head button:focus-visible,.chip:focus-visible,.segmented button:focus-visible,.result-save:focus-visible,.result-open:focus-visible,.detail-actions button:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+.avail-legend{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 0;font-size:12px;color:var(--j-muted)}
+.avail-legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}.dot.free{border:1px solid var(--j-muted)}.dot.full{background:#3a332d;border:1px solid #c9a995}.dot.chosen{background:var(--j-accent)}
+.avail-hint{min-height:20px;margin:8px 0 0;font-size:13px;color:var(--j-free)}
+.avail-error{color:#ffcfb8;font-size:13px}
+
+@media(max-width:1100px){.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.booking-app .journey-search .stay-search{grid-template-columns:1fr 1fr}.booking-app .journey-search .gold-button{grid-column:1/-1}}
+@media(max-width:700px){
+ .result-grid{grid-template-columns:1fr;gap:30px}
+ .results-head{flex-direction:column;align-items:stretch}.results-sort{min-width:0}
+ .results-filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -22px;padding:14px 22px;scrollbar-width:none}
+ .results-filters>*{flex-shrink:0}.results-search{margin-left:0;min-width:200px}
+ .avail-months{grid-template-columns:1fr}.avail-months .avail-month+.avail-month{display:none}
+ .avail-calendar{padding:16px}
+ .detail-book{flex-direction:column;align-items:stretch}.detail-book .journey-action{width:100%}
+ .booking-app .journey-search .stay-search{grid-template-columns:1fr 1fr}
+ .booking-app .journey-search .stay-search label:first-child{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){.segmented button,.chip,.result-save,.result-open,.avail-day{transition:none}}
+
+/* Specificity: legacy `.booking-app button/select/label` rules otherwise win. */
+.booking-app .result-save{background:#1b201ae6;color:#fff;border:1px solid #ffffff40}
+.booking-app .result-save:hover{background:#111511}
+.booking-app .result-save[aria-pressed=true]{color:#f2a99a}
+.booking-app .chip-select{display:inline-flex;flex-direction:row;align-items:center;gap:8px}
+.booking-app .chip-select select{width:auto}
+.booking-app .result-media .journey-placeholder{width:100%;display:flex;align-items:center;justify-content:center;background:#30372e}
+.booking-app .result-media .room-visual{width:100%;height:100%;max-width:none;margin:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:14px 18px 10px}
+.booking-app .result-media .room-visual svg{max-height:68%;margin:6px auto}
+.booking-app .result-media .room-visual-head strong{font:600 18px 'Segoe UI',Arial,sans-serif;padding-right:52px}
+.booking-app .result-media .visual-caption{font-size:11px;text-align:center}
+.booking-app .result-save{border-radius:50%;width:44px;height:44px;padding:0}
+.booking-app .result-open{border:1px solid var(--j-accent);color:var(--j-accent);background:transparent;border-radius:6px}
+.booking-app .result-open:hover{background:var(--j-accent);color:var(--j-accent-ink)}
+/* Calendar: month arrows sit beside the title so the dialog's sticky close button never covers them. */
+.booking-app .avail-head{justify-content:flex-start;gap:18px;padding-right:56px}
+.booking-app .avail-day{aspect-ratio:auto;height:44px;min-height:44px;border:1px solid transparent;background:#2c312a;border-radius:8px;padding:0}
+.booking-app .avail-day:disabled{background:transparent}
+.booking-app .avail-day.is-full{background:#3a332d}
+.booking-app .avail-day.in-range{background:#4a5440;border-radius:0}
+.booking-app .avail-day.is-start,.booking-app .avail-day.is-end{background:var(--j-accent);color:var(--j-accent-ink)}
+.booking-app .avail-day:hover:not(:disabled){border-color:var(--j-accent)}
+.booking-app .avail-head button{border-radius:50%;padding:0}
+
+/* Trip page header */
+.trip-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;margin:10px 0 28px;padding:28px;border:1px solid var(--j-line);border-radius:12px;background:var(--j-surface)}
+.trip-hero.tone-closed,.trip-hero.tone-done{grid-template-columns:1fr}
+.trip-code{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0;font-size:13px;color:var(--j-muted)}
+.trip-code b{color:var(--j-ink);letter-spacing:.04em}
+.booking-app .trip-code button,.booking-app .trip-actions button{min-height:40px;display:inline-flex;align-items:center;gap:8px;padding:0 14px;border-radius:999px;border:1px solid var(--j-line);background:transparent;color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .trip-code button{min-height:32px;font-size:12px;padding:0 10px}
+.booking-app .trip-hero h2{margin:12px 0 6px;font:500 clamp(26px,3vw,36px)/1.25 'Segoe UI',Arial,sans-serif;letter-spacing:-.02em;color:var(--j-ink)}
+.trip-status>p{color:var(--j-muted);margin:0}
+.trip-hero.tone-soon h2,.trip-hero.tone-live h2{color:var(--j-accent)}
+.trip-hero.tone-warn h2{color:#f0c4a8}
+.trip-copied{font-size:13px;color:var(--j-free)!important;margin-top:6px!important}
+.trip-steps{display:flex;gap:0;margin:22px 0 0;padding:0;list-style:none;counter-reset:s}
+.trip-steps li{flex:1;display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--j-muted);position:relative}
+.trip-steps li span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--j-line);font-size:12px;background:var(--j-bg);position:relative;z-index:1}
+.trip-steps li:not(:last-child)::after{content:'';position:absolute;top:14px;left:28px;right:0;height:1px;background:var(--j-line)}
+.trip-steps li.is-done span{background:var(--j-free);color:var(--j-accent-ink);border-color:var(--j-free)}
+.trip-steps li.is-done::after{background:var(--j-free)!important}
+.trip-steps li.is-current span{background:var(--j-accent);color:var(--j-accent-ink);border-color:var(--j-accent);font-weight:700}
+.trip-steps li.is-current{color:var(--j-ink);font-weight:600}
+.trip-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.trip-plan{border-left:1px solid var(--j-line);padding-left:28px;max-height:420px;overflow:auto}
+.booking-app .trip-plan h3{margin:0 0 12px;font:500 18px 'Segoe UI',Arial,sans-serif;color:var(--j-ink)}
+.trip-day h4{margin:14px 0 8px;font:600 12px 'Segoe UI',Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--j-muted)}
+.trip-day ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.trip-item{display:grid;grid-template-columns:48px 20px 1fr;gap:10px;align-items:start;font-size:14px;color:var(--j-ink)}
+.trip-item time{font-variant-numeric:tabular-nums;color:var(--j-muted);padding-top:1px}
+.trip-item svg{margin-top:2px;color:var(--j-accent)}
+.trip-item.kind-included svg{color:var(--j-free)}
+.trip-item strong{display:block;font-weight:500}.trip-item span{display:block;font-size:12px;color:var(--j-muted)}
+.trip-item.is-pending span{color:#e9c9a3}
+.booking-app .trip-code button:focus-visible,.booking-app .trip-actions button:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+@media(max-width:800px){.trip-hero{grid-template-columns:1fr;padding:20px}.trip-plan{border-left:0;border-top:1px solid var(--j-line);padding:18px 0 0;max-height:none}.trip-steps li{font-size:11px}}
+.inline-confirm{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--j-ink,#f3f0e8)}
+.booking-app .booking-header .account-button{background:transparent;border:1px solid var(--j-line);color:var(--j-ink)}
+.booking-app .stay-summary{border-left-color:var(--j-accent);border-radius:8px}
+
+/* Toasts: bottom centre, above the mobile tab bar, never covering the header. */
+.toast-region{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:60;width:min(560px,calc(100% - 32px));pointer-events:none}
+.toast{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 18px;border-radius:10px;background:#f3f0e8;color:#1f241e;box-shadow:0 16px 40px #0007;pointer-events:auto;animation:toast-in .25s ease-out}
+.toast p{margin:0;flex:1;font-size:14px;line-height:1.5}
+.booking-app .toast button{width:36px;height:36px;min-height:36px;border-radius:50%;border:0;background:transparent;color:#1f241e;display:grid;place-items:center;cursor:pointer;padding:0}
+.booking-app .toast button:hover{background:#0001}
+@keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Mobile tab bar */
+.tab-bar{display:none}
+@media(max-width:700px){
+ .tab-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:#1f231ef7;border-top:1px solid var(--j-line);backdrop-filter:blur(10px)}
+ .booking-app .tab-bar button{min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:var(--j-muted);font:11px 'Segoe UI',Arial,sans-serif;cursor:pointer;padding:0;border-radius:8px}
+ .booking-app .tab-bar button[aria-current=page]{color:var(--j-accent)}
+ .booking-app .tab-bar button:focus-visible{outline:2px solid var(--j-focus);outline-offset:-2px}
+ .booking-app{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+ .toast-region{bottom:calc(80px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){.toast{animation:none}}
+
+/* Reviews */
+.stars{display:inline-flex;gap:2px;color:#e8c77d;vertical-align:-3px}
+.rating-badge{display:flex;align-items:center;gap:5px;margin:0;font-size:13px;color:var(--j-ink)}.rating-badge svg{color:#e8c77d}.rating-badge span{color:var(--j-muted)}
+.room-reviews{margin:26px 0;padding:22px;border:1px solid var(--j-line);border-radius:10px}
+.booking-app .room-reviews h3{margin:0 0 12px;font:500 20px 'Segoe UI',Arial,sans-serif}
+.reviews-score{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 14px;font-size:14px;color:var(--j-muted)}.reviews-score b{font-size:28px;color:var(--j-ink);font-weight:600}
+.reviews-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.reviews-list li{padding:14px;border-radius:8px;background:var(--j-surface);display:grid;gap:6px}
+.reviews-list li div{display:flex;align-items:center;gap:8px;font-size:14px}.reviews-list p{margin:0;font-size:14px;line-height:1.6;color:var(--j-ink);overflow-wrap:anywhere}.reviews-list small{font-size:12px;color:var(--j-muted)}
+.reviews-muted{font-size:14px;color:var(--j-muted);margin:0}
+.review-prompt{display:grid;gap:14px;margin:0 0 28px;padding:26px;border:1px solid var(--j-accent);border-radius:12px}
+.booking-app .review-prompt h2{margin:0;font:500 24px 'Segoe UI',Arial,sans-serif}
+.star-input{display:flex;align-items:center;gap:4px;border:0;margin:0;padding:0}
+.star-input legend{font-size:13px;color:var(--j-muted);margin-bottom:6px;padding:0}
+.star-input label{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;cursor:pointer;color:#8c8f84}
+.star-input label.is-on{color:#e8c77d}
+.star-input input{position:absolute;opacity:0;width:1px;height:1px}
+.star-input label:has(input:focus-visible){outline:3px solid var(--j-focus)}
+.star-word{margin-left:10px;font-size:14px;color:var(--j-ink)}
+.booking-app .review-prompt textarea{min-height:90px}
+.booking-app .review-prompt .gold-button{justify-self:start;background:var(--j-accent);color:var(--j-accent-ink);border:0;border-radius:6px;min-height:44px;padding:0 22px;font-weight:600}
+.booking-app .review-prompt fieldset.star-input{border:0;padding:0;margin:0;min-width:0}
+.booking-app .review-prompt .star-input legend{border:0;float:left;width:100%}
+.booking-app .review-prompt label{display:grid;gap:8px;font-size:13px;color:var(--j-muted)}
+.booking-app .review-prompt .star-input label{display:grid;width:48px;height:48px}
+.booking-app .review-prompt textarea{width:100%;box-sizing:border-box;font:15px/1.6 'Segoe UI',Arial,sans-serif;background:var(--j-bg);color:var(--j-ink);border:1px solid var(--j-line);border-radius:6px;padding:12px}
+/* Sticky bar also covers the dialog padding below it, so scrolled content never peeks out underneath. */
+.booking-app .detail-book{box-shadow:0 60px 0 0 var(--j-bg)}
+
+/* Guest picker + quick dates */
+.guest-picker{position:relative;display:grid;gap:7px}
+.guest-picker-label{font-size:12px;letter-spacing:.04em;color:var(--j-muted)}
+.booking-app .guest-picker>button{min-height:48px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--j-bg);color:var(--j-ink);border:1px solid var(--j-line);border-radius:6px;font:15px 'Segoe UI',Arial,sans-serif;cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden}
+.booking-app .guest-picker>button[aria-expanded=true]{border-color:var(--j-accent)}
+.guest-picker-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:20;width:min(330px,calc(100vw - 32px));padding:18px;border-radius:12px;background:#f3f0e8;color:#1f241e;box-shadow:0 18px 50px #0008;display:grid;gap:14px}
+.guest-picker-panel p{margin:0;font-size:12px;line-height:1.5;color:#4d5446}
+.stepper{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stepper strong{display:block;font-size:15px}.stepper small{display:block;font-size:12px;color:#5a6153}
+.stepper-controls{display:flex;align-items:center;gap:10px}
+.booking-app .stepper-controls button{width:40px;height:40px;min-height:40px;border-radius:50%;border:1px solid #8b9282;background:#fff;color:#1f241e;font-size:20px;line-height:1;cursor:pointer;padding:0}
+.booking-app .stepper-controls button:disabled{opacity:.35;cursor:not-allowed}
+.stepper-controls output{min-width:22px;text-align:center;font-weight:600;font-size:16px}
+.booking-app .guest-picker-done{min-height:42px;border-radius:6px;border:0;background:#2f3a2a;color:#f3f0e8;font-weight:600;cursor:pointer}
+.booking-app .stepper-controls button:focus-visible,.booking-app .guest-picker-done:focus-visible{outline:3px solid #2f3a2a;outline-offset:2px}
+.date-presets{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.booking-app .date-presets button{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--j-line);background:transparent;color:var(--j-ink);font:13px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .date-presets button:hover{background:var(--j-bg)}
+.booking-app .date-presets button[aria-pressed=true]{background:var(--j-accent);color:var(--j-accent-ink);border-color:var(--j-accent)}
+.booking-app .date-presets button:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+@media(max-width:700px){.guest-picker-panel{left:0;right:auto}.date-presets{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.date-presets button{flex-shrink:0}}
+.booking-success{display:flex;gap:16px;align-items:flex-start;margin:0 0 22px;padding:22px 24px;border-radius:12px;background:#e3edd0;color:#1f2a1b}
+.booking-success>svg{flex-shrink:0;color:#2f5b2a;margin-top:4px}
+.booking-app .booking-success h2{margin:0 0 6px;font:600 22px 'Segoe UI',Arial,sans-serif;color:#1f2a1b;outline:none}
+.booking-success p{margin:0;font-size:14px;color:#33402c}
+.success-next{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.booking-app .success-next button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #2f3a2a;background:transparent;color:#1f2a1b;font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .success-next button:first-child{background:#2f3a2a;color:#f3f0e8}
+.booking-app .success-next button:focus-visible{outline:3px solid #2f3a2a;outline-offset:2px}
+.booking-app .detail-fix{min-height:48px;padding:0 16px;border-radius:6px;border:1px solid var(--j-accent);background:transparent;color:var(--j-accent);font:600 14px "Segoe UI",Arial,sans-serif;cursor:pointer}
+.detail-book{flex-wrap:wrap}
+
+/* Sticky filter bar with trip summary (dates · guests · edit). */
+.booking-app .results-filters{position:sticky;top:var(--header-h,96px);z-index:15;background:var(--j-bg)}
+.booking-app .results-trip{min-height:40px;display:inline-flex;align-items:center;gap:8px;padding:0 6px 0 14px;border-radius:999px;border:1px solid var(--j-accent);background:transparent;color:var(--j-ink);font:600 14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .results-trip span{margin-left:4px;padding:4px 10px;border-radius:999px;background:var(--j-accent);color:var(--j-accent-ink);font-size:12px}
+.booking-app .results-trip:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+.amenities{margin:22px 0}
+.booking-app .amenities h3{margin:0 0 12px;font:500 20px 'Segoe UI',Arial,sans-serif}
+.amenities ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 20px}
+.amenities li{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--j-ink)}
+.amenities svg{color:var(--j-accent);flex-shrink:0}
+.review-reply{margin:6px 0 0;padding:10px 12px;border-left:2px solid var(--j-accent);background:var(--j-bg);font-size:13px;line-height:1.6;color:var(--j-ink)}
+.review-reply b{display:block;font-size:12px;color:var(--j-muted)}
+
+/* Checkout */
+.checkout-steps{display:flex;gap:6px;margin:0 60px 6px 0;padding:0;list-style:none;font-size:13px;color:var(--j-muted)}
+.checkout-steps li{display:flex;align-items:center;gap:8px;flex:1;padding-bottom:10px;border-bottom:2px solid var(--j-line)}
+.checkout-steps li span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--j-line);font-size:12px;flex-shrink:0}
+.checkout-steps li.is-current{color:var(--j-ink);font-weight:600;border-color:var(--j-accent)}
+.checkout-steps li.is-current span{background:var(--j-accent);color:var(--j-accent-ink);border-color:var(--j-accent)}
+.checkout-steps li.is-done{color:var(--j-ink);border-color:var(--j-free)}.checkout-steps li.is-done span{background:var(--j-free);color:var(--j-accent-ink);border-color:var(--j-free)}
+.booking-app .journey-checkout h2{margin:18px 0 12px}
+.booking-app .checkout-context{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 20px;padding:14px 18px;margin:14px 0 22px;border:1px solid var(--j-line);border-radius:10px;background:var(--j-surface)}
+.checkout-context p{margin:2px 0 0;font-size:14px;color:var(--j-muted)}
+.checkout-context small{flex-basis:100%;margin:0!important}
+.booking-app .journey-plans{margin:20px 0 28px}
+.booking-app .journey-total{background:var(--j-bg);z-index:5;box-shadow:0 48px 0 var(--j-bg)}
+.price-details summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price-details summary::-webkit-details-marker{display:none}
+.price-details summary span{font-size:13px;color:var(--j-accent);text-decoration:underline;text-underline-offset:3px}
+.price-details summary:focus-visible{outline:3px solid var(--j-focus);outline-offset:3px}
+.price-details dl{margin:12px 0 4px;display:grid;gap:6px;max-width:460px;font-size:14px}
+.price-details dl div{display:flex;justify-content:space-between;gap:20px}.price-details dt{color:var(--j-muted)}.price-details dd{margin:0;color:var(--j-ink)}
+.price-details .price-sum{padding-top:8px;border-top:1px solid var(--j-line);font-weight:600}.price-details .price-sum dt{color:var(--j-ink)}
+.checkout-reassure{margin-top:4px;color:var(--j-free)!important}
+@media(max-width:700px){.checkout-steps{margin-right:52px;font-size:11px}.checkout-steps li{flex-direction:column;align-items:flex-start;gap:4px}.booking-app .journey-total{box-shadow:0 24px 0 var(--j-bg)}}
+@media(max-width:700px){.booking-app .journey-plans>button{padding:20px}.booking-app .journey-plans>button[aria-pressed=true]{padding:19px}.booking-app .journey-plans h3{font-size:22px;margin:10px 0}}
+
+/* Search lives in the first viewport: a floating card over the hero's lower edge (desktop/tablet). */
+@media(min-width:701px){
+ .booking-app .journey-hero{min-height:600px;height:72vh}
+ .booking-app .journey-search{position:relative;z-index:3;margin:-120px auto 0;width:min(1240px,calc(100% - 8%));padding:6px 26px 18px;border-radius:14px;background:#30352ef5;border:1px solid var(--j-line);box-shadow:0 24px 60px #0009;box-sizing:border-box}
+ .booking-app .journey-hero-copy{padding-bottom:120px}
+}
+@media(min-width:701px){.booking-app .journey-hero-photo .journey-photo span{bottom:auto;top:20px;left:auto;right:28px}}
+.history-side{display:grid;justify-items:end;gap:8px}
+.booking-app .history-side button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--j-line);background:transparent;color:var(--j-accent);font:14px "Segoe UI",Arial,sans-serif;cursor:pointer}
+/* Round 6: compare rooms */
+.result-actions{display:grid;grid-template-columns:auto 1fr;gap:8px}
+.booking-app .result-compare{min-height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border-radius:6px;border:1px solid var(--j-line);background:transparent;color:var(--j-ink);font:500 14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .result-compare[aria-pressed=true]{border-color:var(--j-accent);background:#d5e3b71f;color:var(--j-accent)}
+.booking-app .result-compare:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+.compare-tray{position:fixed;z-index:35;left:50%;bottom:16px;transform:translateX(-50%);width:min(860px,calc(100vw - 32px));box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px;background:#1f231ef7;border:1px solid var(--j-line);border-radius:10px;box-shadow:0 10px 30px #0008;backdrop-filter:blur(10px)}
+.compare-tray ul{display:flex;gap:8px;margin:0;padding:0;list-style:none;min-width:0;flex:1}
+.compare-tray li{display:flex;align-items:center;gap:4px;min-width:0;padding:4px 4px 4px 10px;border:1px solid var(--j-line);border-radius:6px;font-size:13px;color:var(--j-ink)}
+.compare-tray li span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.compare-tray li.is-empty{border-style:dashed;color:var(--j-muted);padding:10px}
+.booking-app .compare-tray li button{width:32px;height:32px;min-height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:5px;background:transparent;color:var(--j-muted);cursor:pointer}
+.booking-app .compare-tray li button:hover{color:var(--j-ink);background:#ffffff14}
+.compare-tray>div{display:flex;gap:8px;flex:none}
+.compare-count{display:none}
+.booking-app .compare-clear{min-height:44px;padding:0 12px;border:0;background:transparent;color:var(--j-muted);text-decoration:underline;cursor:pointer;font:14px 'Segoe UI',Arial,sans-serif}
+.booking-app .compare-go{min-height:44px;padding:0 18px;border:1px solid var(--j-accent);border-radius:6px;background:var(--j-accent);color:var(--j-accent-ink);font:600 14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .compare-go:disabled{background:transparent;color:var(--j-muted);border-color:var(--j-line);cursor:default}
+.booking-app .compare-tray button:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+.booking-app:has(.compare-tray) .results{padding-bottom:120px}
+.compare-dialog{--j-bg:#242823;--j-surface:#30352e;--j-ink:#f3f0e8;--j-muted:#ccd1c3;--j-line:#59614f;--j-accent:#d5e3b7;width:min(1000px,96vw);max-height:92dvh;box-sizing:border-box;margin:auto;padding:28px;background:var(--j-bg);color:var(--j-ink);border:1px solid var(--j-line);border-radius:8px;font:15px/1.55 'Segoe UI',Arial,sans-serif}
+.compare-dialog::backdrop{background:#101610dc}
+.compare-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.booking-app .compare-dialog h2{margin:0;font:500 24px/1.3 'Segoe UI',Arial,sans-serif;color:var(--j-ink)}
+.compare-note{margin:6px 0 18px;font-size:13px;color:var(--j-muted)}
+.compare-scroll{overflow-x:auto}
+.compare-dialog table{width:100%;border-collapse:collapse;min-width:520px}
+.compare-dialog th,.compare-dialog td{padding:10px 12px;border-bottom:1px solid var(--j-line);text-align:left;vertical-align:top}
+.compare-dialog thead th{font-size:15px;font-weight:600;color:var(--j-ink)}
+.compare-dialog thead small{display:block;font-size:12px;font-weight:400;color:var(--j-muted)}
+.compare-dialog tbody th{font-weight:400;color:var(--j-muted);font-size:14px;width:24%}
+.compare-dialog tbody td.is-best{background:#d5e3b71a;color:var(--j-accent);font-weight:600}
+.compare-dialog tr.is-feature td svg{color:var(--j-free)}
+.compare-no{color:var(--j-muted)}
+.compare-dialog tfoot td{display:table-cell;border-bottom:0}
+.compare-dialog tfoot td>button{display:block;width:100%;margin-top:6px}
+.booking-app .compare-remove{min-height:40px;border:0;background:transparent;color:var(--j-muted);text-decoration:underline;cursor:pointer;font:13px 'Segoe UI',Arial,sans-serif}
+@media(max-width:700px){
+ .compare-tray{bottom:calc(76px + env(safe-area-inset-bottom));padding:8px 10px}
+ .compare-tray ul{display:none}
+ .compare-tray>div{flex:1;align-items:center}
+ .compare-count{display:block!important;margin-right:auto;font-size:14px;color:var(--j-ink)}
+ .compare-dialog{width:100vw;max-width:100vw;max-height:100dvh;margin:0;border:0;border-radius:0;padding:20px 16px}
+ .booking-app:has(.compare-tray) .results{padding-bottom:150px}
+}
+/* Round 6: review breakdown */
+.reviews-overview{display:grid;grid-template-columns:auto minmax(220px,340px);gap:12px 40px;align-items:center;margin-bottom:12px}
+.reviews-overview .reviews-score{margin:0}
+.reviews-bars{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.booking-app .reviews-bars button{width:100%;min-height:32px;display:grid;grid-template-columns:48px 1fr 28px;align-items:center;gap:10px;padding:2px 6px;border:1px solid transparent;border-radius:5px;background:transparent;color:var(--j-muted);font:13px 'Segoe UI',Arial,sans-serif;cursor:pointer;text-align:left}
+.booking-app .reviews-bars button[aria-pressed=true]{border-color:var(--j-accent);color:var(--j-ink)}
+.booking-app .reviews-bars button:disabled{cursor:default;opacity:.7}
+.booking-app .reviews-bars button:not(:disabled):hover{background:#ffffff0d}
+.reviews-bars i{display:block;height:8px;border-radius:4px;background:#ffffff1f;overflow:hidden}
+.reviews-bars i b{display:block;height:100%;background:#e9c66f;border-radius:4px}
+.reviews-bars button span:last-child{text-align:right}
+.reviews-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:6px 0 4px;font-size:14px;color:var(--j-muted)}
+.booking-app .reviews-tools label{display:flex;flex-direction:row;align-items:center;gap:8px;margin:0;font-size:14px;color:var(--j-muted)}
+.booking-app .reviews-tools select{min-height:40px;padding:6px 10px;border:1px solid var(--j-line);border-radius:6px;background:var(--j-surface);color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;color-scheme:dark}
+.booking-app .reviews-tools button,.booking-app .reviews-more{min-height:40px;padding:0 14px;border:1px solid var(--j-line);border-radius:6px;background:transparent;color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .reviews-more{margin-top:12px}
+@media(max-width:700px){.reviews-overview{grid-template-columns:1fr}}
+/* Round 6: printable stay page */
+@media print{
+ .booking-app{background:#fff;color:#111}
+ .booking-app *{color:#111!important;background:transparent!important;box-shadow:none!important}
+ .booking-header,.tab-bar,.toast-region,.skip-link,.booking-app button,.booking-app select,.booking-app form,.booking-success,.review-prompt,.date-change-panel,.stay-picker,.download-receipt,footer{display:none!important}
+ .trip-hero,.stay-summary{break-inside:avoid;border:1px solid #999!important}
+ .trip-day{break-inside:avoid}
+}
+.compare-dialog tbody th,.compare-dialog thead th:first-child,.compare-dialog tfoot th{position:sticky;left:0;z-index:1;background:var(--j-bg)}
+/* Round 7: arrival time and special requests */
+.arrival-fields{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:14px 20px;margin:8px 0 4px;padding:18px 0 0;border:0;border-top:1px solid var(--j-line)}
+.arrival-fields legend{padding:0;font-size:15px;font-weight:600;color:var(--j-ink)}
+.booking-app .arrival-fields label{display:grid;gap:8px;font-size:14px;color:var(--j-muted);margin:0}
+.booking-app .arrival-fields select,.booking-app .arrival-fields textarea{width:100%;box-sizing:border-box;min-height:48px;padding:10px 12px;border:1px solid var(--j-line);border-radius:4px;background:var(--j-surface);color:var(--j-ink);font:15px/1.5 'Segoe UI',Arial,sans-serif;color-scheme:dark;resize:vertical}
+.arrival-fields small{justify-self:end;font-size:12px;color:var(--j-muted)}
+.arrival-hint{grid-column:1/-1;margin:0;font-size:13px;color:var(--j-muted)}
+.arrival-card{display:flex;align-items:flex-start;gap:16px;margin:20px 0;padding:20px 22px;border:1px solid var(--j-line);border-radius:8px;background:var(--j-surface);color:var(--j-ink)}
+.arrival-card>svg{flex:none;margin-top:3px;color:var(--j-accent)}
+.arrival-card>div{flex:1;min-width:0}
+.booking-app .arrival-card h2{margin:0 0 4px;font:600 18px/1.4 'Segoe UI',Arial,sans-serif;color:var(--j-ink)}
+.arrival-card p{margin:0;font-size:14px;color:var(--j-muted)}
+.arrival-card .arrival-request{margin-top:6px;color:var(--j-ink);overflow-wrap:anywhere}
+form.arrival-card{display:block}
+.booking-app .arrival-card>button,.booking-app .arrival-actions button:not(.gold-button){min-height:44px;padding:0 16px;border:1px solid var(--j-line);border-radius:6px;background:transparent;color:var(--j-ink);font:500 14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.arrival-actions{display:flex;gap:10px;margin-top:14px}
+@media(max-width:700px){.arrival-fields{grid-template-columns:1fr}.arrival-card{flex-wrap:wrap}.booking-app .arrival-card>button{width:100%}}
+@media print{.arrival-card{border:1px solid #999!important;break-inside:avoid}}
+/* Round 9: cancellation deadline card */
+.cancel-card{margin:20px 0;padding:20px 22px;border:1px solid var(--j-line);border-radius:8px;background:var(--j-surface);color:var(--j-ink)}
+.booking-app .cancel-card h2{margin:0 0 4px;font:600 18px/1.4 'Segoe UI',Arial,sans-serif;color:var(--j-ink)}
+.cancel-card p{margin:0 0 14px;font-size:14px;color:var(--j-muted)}
+.cancel-timeline{display:grid;grid-template-columns:1fr 1fr 1fr;row-gap:8px;margin:0 0 16px;font-size:12px;color:var(--j-muted)}
+.cancel-timeline span{grid-column:1/3;height:8px;border-radius:8px 0 0 8px;background:linear-gradient(90deg,var(--j-accent) calc(var(--done,0)*100%),#d5e3b755 0)}
+.cancel-timeline::after{content:'';grid-row:1;grid-column:3;height:8px;border-radius:0 8px 8px 0;background:repeating-linear-gradient(45deg,#ffffff22 0 4px,transparent 4px 8px);border:1px solid var(--j-line);border-left:2px solid var(--j-ink);box-sizing:border-box}
+.cancel-timeline i{font-style:normal;grid-row:2}.cancel-timeline i:nth-of-type(2){grid-column:2;justify-self:end;text-align:right;color:var(--j-ink);font-weight:600}.cancel-timeline i:nth-of-type(3){grid-column:3;padding-left:8px}
+.booking-app .cancel-card>button{min-height:44px;padding:0 16px;border:1px solid #c98a7a;border-radius:6px;background:transparent;color:#f2c3b6;font:500 14px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .cancel-card.is-closed>button{border-color:var(--j-line);color:var(--j-ink)}
+.booking-app .cancel-card>button:focus-visible{outline:3px solid var(--j-focus,#d5e3b7);outline-offset:2px}
+@media(max-width:700px){.cancel-timeline{font-size:11px}.booking-app .cancel-card>button{width:100%}}
+@media print{.cancel-card{display:none!important}}
+/* Round 10: recent searches under the search form */
+.recent-searches{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:var(--j-muted)}
+.recent-searches>span{letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-right:2px}
+.booking-app .recent-searches button{min-height:36px;padding:0 12px;border-radius:6px;border:1px dashed var(--j-line);background:transparent;color:var(--j-ink);font:13px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.booking-app .recent-searches button:hover{background:var(--j-bg);border-style:solid}
+.booking-app .recent-searches button:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+@media(max-width:700px){.recent-searches{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.booking-app .recent-searches button{white-space:nowrap}}
+/* Round 11: trips list with tabs */
+.trip-list{margin:0 0 24px}
+.trip-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.booking-app .trip-tabs button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--j-line);background:transparent;color:var(--j-ink);font:14px 'Segoe UI',Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.trip-tabs button span{font-size:12px;min-width:22px;padding:1px 7px;border-radius:999px;background:#ffffff14}
+.booking-app .trip-tabs button[aria-pressed=true]{background:var(--j-accent);color:var(--j-accent-ink);border-color:var(--j-accent)}
+.trip-tabs button[aria-pressed=true] span{background:#252b2120}
+.trip-list ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.booking-app .trip-list li button{width:100%;height:100%;display:grid;gap:3px;text-align:left;padding:14px 16px;border:1px solid var(--j-line);border-radius:8px;background:var(--j-surface);color:var(--j-ink);font:14px/1.45 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.trip-list li button small{font-size:12px;color:var(--j-muted)}.trip-list li button strong{font-weight:600}.trip-list li button span{font-size:13px;color:var(--j-muted)}
+.booking-app .trip-list li button:hover{border-color:var(--j-muted)}
+.booking-app .trip-list li button[aria-current=true]{border:2px solid var(--j-accent);padding:13px 15px;box-shadow:inset 4px 0 0 var(--j-accent)}
+.booking-app .trip-tabs button:focus-visible,.booking-app .trip-list li button:focus-visible{outline:3px solid var(--j-focus);outline-offset:2px}
+.trip-list-empty{color:var(--j-muted);margin:4px 0 0}
+@media(max-width:700px){.trip-list ul{grid-auto-flow:column;grid-auto-columns:78%;grid-template-columns:none;overflow-x:auto;padding-bottom:6px}}
+@media print{.trip-list{display:none!important}}
+/* Round 12: book again */
+.booking-app .trip-actions .trip-again{background:var(--j-accent);color:var(--j-accent-ink);border-color:var(--j-accent);font-weight:600}

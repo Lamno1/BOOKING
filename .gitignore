@@ -21,6 +21,10 @@ Thumbs.db
 desktop.ini
 
 # Logs / temp
+# Account and booking databases remain local.
+data/*.sqlite*
+data/*.db*
+data/backups/
 *.log
 tmp/
 temp/
@@ -37,8 +41,32 @@ test-results/
 *.blend@
 *.blend~
 
+# Local render toolchain; reproducible setup is documented with the scene.
+tools/blender-portable/
+
 # Large raw geospatial downloads
 assets/context/vungtau/raw/
 
 # Generated intermediate GIS
 assets/context/vungtau/intermediate/
+
+# Local customer-ledger snapshots; never commit user data backups.
+data/backups/*.sqlite*
+
+# --- 2026-10-22: public GitHub repo hygiene ---
+# Guest data, ledgers and anything under data/ stay on the server only.
+data/
+# Local toolchains and raw 3D/GIS assets (hundreds of MB, not needed to build the booking app).
+tools/
+assets/
+# Local source snapshots made before refactors.
+archive/
+# Scratch QA captures and recordings at the project and web roots.
+/qa-*.png
+src/main/resources/web/qa-*
+src/main/resources/web/*.mp4
+src/main/resources/web/*.webm
+src/main/resources/web/screenshot_*.png
+src/main/resources/web/test_living_ocean.jpg
+src/main/resources/web/test-results/
+docs/*.log

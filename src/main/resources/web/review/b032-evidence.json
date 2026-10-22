@@ -1,0 +1,22 @@
+{
+  "contract": "ART_DIRECTION_CONTRACT.md section B/03.2. Gallery fullscreen, stable image frame, package/benefits/total synchronization; responsive WebP, no booking writes.",
+  "targetViewports": ["1440x900", "390x844"],
+  "accessibility": {"status":"pass","evidence":"Keyboard ArrowLeft wraps1to4; thumbnails and zoom operate; Escape closes native dialog and focus returns to original image button. Visible focus and 44px controls inspected. Manual reduce-motion checkbox tested with gallery and package change. OS preference is wired via matchMedia but changing the real OS setting was not tested; not a full WCAG audit."},
+  "responsive": {"status":"pass","evidence":"Rendered1440x900 and390x844; mobile DOM has no horizontal overflow, header link collision corrected and checked. Mobile swipe2to3 and zoom drag translate(-126.14px,0) observed. Fixed mobile total changes with package."},
+  "contentStates": {
+    "loading":{"status":"pass","evidence":"During missing-image test the gallery visibly showed Đang tải ảnh… while keeping previous image; frame and close control remain available."},
+    "empty":{"status":"not-applicable","reason":"Fixed curated four-image room review, no dynamic search or empty result set."},
+    "error":{"status":"pass","evidence":"Temporarily held studio-3-large.webp outside its served filename, clicked thumbnail, observed specific failure and retry while previous image alt remained Không gian chung. Restored source file then clicked Thử lại; image decoded and error cleared. b032-gallery-error.png."},
+    "partial":{"status":"pass","evidence":"AI concept labels remain visible in page and fullscreen; source724x543 limit stated in delivery. No real-room verification or view promise."},
+    "success":{"status":"pass","evidence":"Breakfast choice updates status and desktop/mobile totals to1.940.000 with4breakfasts+2teas; return updates1.700.000 with2teas. No transaction performed."},
+    "permission":{"status":"not-applicable","reason":"Public static design review; no login, protected data or write API."}
+  },
+  "renderedEvidence": [
+    {"viewport":"1440x900","artifact":"b032-desktop.png","observation":"Final desktop page and review motion control, native WebP hero."},
+    {"viewport":"1440x900","artifact":"b032-gallery-desktop.png","observation":"Fullscreen fixed frame, thumbnail row, caption, zoom and controls."},
+    {"viewport":"1440x900","artifact":"b032-packages-desktop.png","observation":"Selected breakfast card with synchronized total and entitlements."},
+    {"viewport":"390x844","artifact":"b032-mobile.png","observation":"Mobile header and hero with readable copy, fixed total; no overflow."},
+    {"viewport":"390x844","artifact":"b032-gallery-mobile.png","observation":"Mobile gallery keeps full source image; controls and thumbnails remain accessible."},
+    {"viewport":"1440x900","artifact":"b032-gallery-error.png","observation":"Specific loading failure with recovery action and previous image retained."}
+  ]
+}

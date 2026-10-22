@@ -1,0 +1,13 @@
+Edit this STAYOS room-understanding board. Preserve all four architectural photographs, layout, warm charcoal theme, STAYOS branding, room type and factual header. Change only annotation text and numbering to be accurate and avoid unverified amenities.
+On the large top overview REMOVE all three floating numbered circles completely. Replace the dark bottom-left label on the overview with exact unnumbered text "Tổng thể studio" and subline "Giường, sofa, bàn ăn và bếp trong cùng không gian".
+On the bottom three panels replace the left circular badges with 01, 02, 03 respectively and headings exactly:
+"01 · Giường & cửa sổ"
+"02 · Bếp & bàn ăn"
+"03 · Phòng tắm riêng"
+Under these headings use only:
+"1 giường đôi · ảnh concept"
+"Bếp nhỏ và bàn ăn · ảnh concept"
+"Phòng tắm riêng · ảnh concept"
+Remove the claim "Bếp nhỏ đầy đủ tiện nghi" entirely. Do NOT invent dimensions or claim equipment verified.
+Footer must read exactly "CONCEPT AI · Chưa phải ảnh thực tế hoặc mặt bằng đo đạc".
+Keep the title "Studio R-101 · Hiểu căn phòng trước khi đặt" and facts "32 m² · 1 giường đôi · tối đa 2 khách · tầng 1". All Vietnamese text correctly accented. No additional text.

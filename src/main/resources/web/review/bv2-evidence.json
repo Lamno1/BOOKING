@@ -1,0 +1,20 @@
+{
+ "contract":"ART_DIRECTION_CONTRACT.md section B+nội dung V2. Understand room, explore linked photos, compare itemized plan and entitlement schedule. Review-only, no API writes.",
+ "targetViewports":["1440x900","390x844"],
+ "accessibility":{"status":"pass","evidence":"In this revision: Enter toggles room-verification details; room-zone buttons open exact bedroom/bath image; Escape returns focus to bedroom button. Native dialog, visible focus and manual/OS reduce-motion wiring retained from b032-evidence.json; no new animation. Not a complete WCAG/device audit."},
+ "responsive":{"status":"pass","evidence":"1440x900 three room columns and two quote columns inspected;390x844 stacks room and quote content, no horizontal overflow. Fixed mobile total syncs with selection."},
+ "contentStates":{
+  "loading":{"status":"pass","evidence":"Unchanged gallery decode/loading implementation, previously exercised and documented in b032-evidence.json; no new async surface introduced."},
+  "empty":{"status":"not-applicable","reason":"Fixed room and two curated plans; no search/dynamic empty set."},
+  "error":{"status":"pass","evidence":"Gallery error/retry retained from03.2, tested with unavailable source and successful recovery; screenshot b032-gallery-error.png retained. Not rerun in this content-only revision."},
+  "partial":{"status":"pass","evidence":"Concept disclaimer plus expandable missing address/contact/equipment/layout facts. Expansion tested using Enter; no generated interior promoted to verified plan."},
+  "success":{"status":"pass","evidence":"Breakfast:room1.700.000+supplement240.000=total1.940.000,4breakfasts15/16November. Switch back:total1.700.000 and breakfast schedule hidden; region and fixed mobile totals remain consistent."},
+  "permission":{"status":"not-applicable","reason":"Public visual review without protected data or submission."}
+ },
+ "renderedEvidence":[
+  {"viewport":"1440x900","artifact":"bv2-room-desktop.png","observation":"Three concise studio zones and expandable unverified facts, room content before package selection."},
+  {"viewport":"1440x900","artifact":"bv2-quote-desktop.png","observation":"Itemized quote and proposed service schedule for selected breakfast plan."},
+  {"viewport":"390x844","artifact":"bv2-room-mobile.png","observation":"Stacked room explanation and image exploration controls."},
+  {"viewport":"390x844","artifact":"bv2-quote-mobile.png","observation":"Room1.700.000,supplement240.000,total1.940.000, fixed bottom total consistent."}
+ ]
+}

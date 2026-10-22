@@ -1,0 +1,23 @@
+{
+ "contract":"ART_DIRECTION_CONTRACT.md: Xem lại lựa chọn. V2 visual/information approval only; review session draft, canonical recalculation, no booking writes, no unverified floor display.",
+ "targetViewports":["1440x900","390x844"],
+ "accessibility":{"status":"pass","evidence":"Desktop visible focus captured on header edit link. Enter opens/closes service conditions. Native links/buttons are44px+, mobile edit is fixed and reachable. New page has no entrance or continuous motion, pressed transform disabled under reduced-motion. No full WCAG/device certification."},
+ "responsive":{"status":"pass","evidence":"1440x900 two-column room/price layout and390x844 stacked layout inspected. Both DOM checks show no horizontal overflow. Fixed mobile total3.240.000 matches desktop. Flight/services retained through mobile edit."},
+ "contentStates":{
+  "loading":{"status":"pass","evidence":"Observed actual navigation from B showing role=status Đang tải phòng, giá và quyền lợi… before review data completed; aria-busy clears after render. No placeholder total advertised while loading."},
+  "empty":{"status":"pass","evidence":"Opened independent temporary tab with no draft; observed Bạn chưa chọn kỳ nghỉ and Xem phòng recovery link. choice-empty-mobile.png; temporary tab closed afterward."},
+  "error":{"status":"pass","evidence":"Past dates in editor disable continuation with explicit Vietnam-date message. Added spa without date/time; button disabled and direct review navigation shows Còn lịch dịch vụ cần hoàn tất with edit link, while other services/flight remain. choice-validation-mobile.png. Corrupt storage/version refusal verified in unit tests; network failure and storage-denial recovery were not forced in browser."},
+  "partial":{"status":"pass","evidence":"Room photos marked AI concept; policies and service schedule explicitly proposed. No floor in live review DOM; floor remains internal catalog data."},
+  "success":{"status":"pass","evidence":"B→review→edit→review→reload and back to B preserve selected inputs. Studio3n/2guests/breakfast/dining2/transfer1=5.060.000, flightVN123. Inn2n/4guests/breakfast/dining2=3.280.000 with8breakfasts+4teas. Changing to Studio requires reducing4guests to2 without dropping dinner, total3.240.000."},
+  "permission":{"status":"not-applicable","reason":"Public review with session-only selection inputs; no auth, payment, email, booking save or protected data operation."}
+ },
+ "renderedEvidence":[
+  {"viewport":"1440x900","artifact":"choice-desktop.png","observation":"Final Studio2n/2guests/breakfast/dining2 itemized3.240.000; visible keyboard focus."},
+  {"viewport":"390x844","artifact":"choice-mobile.png","observation":"Same final selection on mobile; readable room/date facts, fixed3.240.000 total and edit link."},
+  {"viewport":"390x844","artifact":"choice-services-mobile.png","observation":"Dinner quantity, requested service date/time and conditions shown in mobile flow."},
+  {"viewport":"1440x900","artifact":"choice-services-desktop.png","observation":"Earlier Studio3n/breakfast/dinner2/transfer1 test at5.060.000, retains room and entitlements after reload."},
+  {"viewport":"390x844","artifact":"choice-inn-mobile.png","observation":"InnI-103 selection test at3.280.000; matching Inn concept and room metadata."},
+  {"viewport":"390x844","artifact":"choice-validation-mobile.png","observation":"Incomplete service schedule shows specific error and recovery link without dropping other inputs."},
+  {"viewport":"390x844","artifact":"choice-empty-mobile.png","observation":"Independent-tab empty state with route back to explore the room."}
+ ]
+}

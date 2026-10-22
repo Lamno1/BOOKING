@@ -1,2 +1,15 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="STAYOS Vung Tau cinematic destination experience"><title>STAYOS · Vũng Tàu</title><link rel="stylesheet" href="styles.css"><script type="module" src="app.js"></script></head><body><main id="app"><canvas id="scene" aria-label="Interactive Vung Tau destination scene"></canvas><div class="grain"></div><header class="topbar"><div class="brand"><span class="mark">S</span><span>STAYOS</span></div><div class="eyebrow">VŨNG TÀU · VIETNAM</div><button id="motion-toggle" class="ghost" aria-label="Toggle reduced motion">◌ Motion</button></header><section class="hero"><p class="kicker">A living coastal chapter</p><h1>Stay where<br><em>the coast</em> breathes.</h1><p class="lede">An immersive way into Vũng Tàu, shaped by tide, light and local time.</p></section><aside class="poi-panel"><div class="panel-label">EXPLORE THE COAST</div><button class="poi active" data-poi="song"><span class="poi-dot"></span><span><b>The Sóng</b><small>Property experience · 10.35°N, 107.09°E</small></span><i>↗</i></button><button class="poi" data-poi="front"><span class="poi-dot"></span><span><b>Bãi Trước</b><small>Front Beach · verified destination landmark</small></span><i>↗</i></button><button class="poi" data-poi="back"><span class="poi-dot"></span><span><b>Bãi Sau</b><small>Back Beach · verified destination landmark</small></span><i>↗</i></button></aside><div class="map-controls"><button id="zoom-in">+</button><button id="zoom-out">−</button><button id="recenter" title="Recenter">◎</button></div><div class="property-card" id="property-card"><div class="card-tag">CONCEPTUAL PROPERTY EXPERIENCE</div><h2>The Sóng</h2><p>Rise with the tide. Explore a representative spatial preview of the property.</p><button id="enter-property" class="gold">Enter property experience <span>→</span></button></div><pre id="debug"><code id="debug-data"></code></pre><div class="status" id="status"><span class="live"></span> LIVING ENVIRONMENT · <span id="fps">-- FPS</span></div><div class="property-view" id="property-view"><button id="back-map" class="back">← Back to destination</button><div><span class="kicker">Representative spatial preview</span><h2>The Sóng<br><em>Property experience</em></h2><p>Explore lobby, pool, rooftop and beach access.</p></div><div class="hotspots"><button>LOBBY</button><button>ROOFTOP</button><button>POOL</button></div></div></main></body></html>
-
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11130f" />
+    <meta name="description" content="Tìm phòng, chọn ngày lưu trú và quản lý kỳ nghỉ cùng STAYOS. Danh mục minh họa, chưa thu tiền trực tuyến." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%2311130f'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='32' fill='%23d8b97e'%3ES%3C/text%3E%3C/svg%3E" />
+    <title>STAYOS — Tìm phòng và đặt kỳ nghỉ</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/app/booking.jsx"></script>
+  </body>
+</html>

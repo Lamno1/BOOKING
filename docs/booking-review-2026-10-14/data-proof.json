@@ -1,0 +1,13 @@
+{
+  "date":"2026-10-14",
+  "before":{"source":"read-only GET from previously running API","room":{"id":"ocean","name":"Ocean View Apartment","capacity":2,"price":2490000},"client":{"number":"R-101","area":32,"typeName":"Studio","price":850000},"cause":"Unversioned partial API record spread over newer client record"},
+  "after":{"version":"two-properties-demo-v1","propertyId":"residence","propertyName":"STAYOS Residence","roomId":"ocean","number":"R-101","name":"R-101 · Studio","area":32,"bedrooms":1,"capacity":2,"beds":"1 giường đôi","nightlyRate":850000,"nights":2,"roomTotal":1700000},
+  "tests":{"apiIntegration":6,"database":1,"frontend":6,"createdRoomSnapshots":15,"liveCatalogEquality":"PASS: every field of 15 rooms, 2 properties and 4 services","mutationDatabase":"JUnit @TempDir only"},
+  "existingDatabaseUnchanged":{
+    "stay_bookings":{"rows":1,"sha256Before":"ce9563102dfb612eea00ebbecbab1865e6a0aadc47a2ac359baed6a02a67a7f7","sha256After":"ce9563102dfb612eea00ebbecbab1865e6a0aadc47a2ac359baed6a02a67a7f7"},
+    "stay_requests":{"rows":1,"sha256Before":"8fd407d39b6456cc5a150353e3444434d3cad2d772827b6b019ca120f24f9454","sha256After":"8fd407d39b6456cc5a150353e3444434d3cad2d772827b6b019ca120f24f9454"},
+    "stay_history":{"rows":3,"sha256Before":"4819aae82f581f7dcc2d9fa1bf2f3cf004482a329ee479837330e2de5fd38d00","sha256After":"4819aae82f581f7dcc2d9fa1bf2f3cf004482a329ee479837330e2de5fd38d00"}
+  },
+  "legacyRule":"Preserve every historical payload and monetary amount. No inferred property. Retain internal room IDs to conservatively preserve occupancy; do not migrate historical names, prices or room specs.",
+  "deploymentRule":"Compile API after inventory changes, restart it, build client, run verify-booking.cjs. Mixed versions fail closed. Review assets/packages are excluded from production build."
+}

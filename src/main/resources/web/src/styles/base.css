@@ -1,0 +1,128 @@
+
+:root {
+  color-scheme: dark;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  --ink: #f3f0e9;
+  --muted: rgba(243, 240, 233, .65);
+  --accent: #d8b97e;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #11130f; }
+body { color: var(--ink); -webkit-font-smoothing: antialiased; }
+button, a { font: inherit; }
+button { color: inherit; }
+.skip-link { position: fixed; top: 10px; left: 50%; z-index: 100; transform: translate(-50%, -150%); padding: 10px 16px; color: #111; background: #fff; transition: transform .2s; }
+.skip-link:focus { transform: translate(-50%, 0); }
+
+.experience { position: relative; width: 100%; height: 100%; min-height: 500px; isolation: isolate; }
+.scene-stack, .scene { position: absolute; inset: 0; }
+.scene { visibility: visible; overflow: hidden; will-change: clip-path, opacity; }
+.scene-media { position: absolute; inset: -4%; background: #171812 center/cover no-repeat; will-change: transform; transform: scale(1.02); }
+.scene-video { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
+.scene-video.is-ready { opacity: 1; }
+.veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7, 9, 7, .7) 0%, rgba(8, 10, 8, .24) 45%, rgba(5, 7, 5, .2) 100%), linear-gradient(0deg, rgba(5, 7, 5, .58), transparent 55%); }
+.veil::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 66% 44%, transparent 0 18%, rgba(0,0,0,.2) 85%); }
+
+.topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 96px; padding: 0 4.5vw; border-bottom: 1px solid rgba(255,255,255,.14); }
+.brand, .menu-toggle { border: 0; background: none; cursor: pointer; }
+.brand { justify-self: start; display: flex; align-items: center; gap: 13px; padding: 0; }
+.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; font-family: Georgia, 'Times New Roman', serif; font-size: 19px; }
+.brand-name { font-size: 13px; letter-spacing: .32em; font-weight: 500; }
+.project-label { display: flex; gap: 28px; margin: 0; font-size: 10px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); }
+.project-label span + span { position: relative; }
+.project-label span + span::before { content: ''; position: absolute; left: -14px; top: 50%; width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }
+.menu-toggle { justify-self: end; display: flex; align-items: center; gap: 14px; padding: 10px 0 10px 14px; text-transform: uppercase; font-size: 10px; letter-spacing: .18em; }
+.menu-toggle i { position: relative; display: block; width: 26px; height: 14px; }
+.menu-toggle b { position: absolute; right: 0; width: 26px; height: 1px; background: currentColor; transition: .4s var(--ease); }
+.menu-toggle b:first-child { top: 3px; }
+.menu-toggle b:last-child { top: 11px; width: 17px; }
+.menu-toggle.is-open b:first-child { transform: translateY(4px) rotate(45deg); }
+.menu-toggle.is-open b:last-child { width: 26px; transform: translateY(-4px) rotate(-45deg); }
+
+.scene-copy { position: absolute; z-index: 4; top: 50%; left: 11.5vw; width: min(680px, 72vw); transform: translateY(-47%); }
+.eyebrow { display: flex; align-items: center; gap: 16px; margin: 0 0 22px; text-transform: uppercase; font-size: 10px; letter-spacing: .28em; color: rgba(255,255,255,.72); }
+.eyebrow span { display: inline-flex; align-items: center; gap: 13px; color: var(--accent); }
+.eyebrow span::after { content: ''; width: 34px; height: 1px; background: currentColor; }
+.scene h1 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(72px, 10vw, 154px); font-weight: 400; line-height: .83; letter-spacing: -.045em; text-shadow: 0 3px 35px rgba(0,0,0,.16); }
+.description { max-width: 430px; margin: 34px 0 0 5px; font-size: clamp(13px, 1.05vw, 16px); font-weight: 300; line-height: 1.7; letter-spacing: .025em; color: rgba(255,255,255,.78); }
+.enter-button { display: flex; align-items: center; gap: 24px; margin: 38px 0 0 5px; padding: 0 0 12px; border: 0; border-bottom: 1px solid rgba(255,255,255,.55); background: none; text-transform: uppercase; font-size: 10px; letter-spacing: .18em; cursor: pointer; transition: gap .35s var(--ease), border-color .35s; }
+.enter-button:hover { gap: 35px; border-color: var(--accent); }
+.enter-button svg, .scene-controls svg, .menu-panel svg { width: 20px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.scene-coordinate { position: absolute; z-index: 4; top: 50%; right: 4.5vw; margin: 0; transform: translate(50%, -50%) rotate(90deg); transform-origin: center; font-size: 9px; text-transform: uppercase; letter-spacing: .2em; color: rgba(255,255,255,.55); }
+
+.journey { position: fixed; z-index: 15; left: 4.5vw; right: 4.5vw; bottom: 42px; }
+.journey-track { height: 1px; background: rgba(255,255,255,.22); overflow: hidden; }
+.journey-track span { display: block; width: 100%; height: 100%; background: var(--ink); transform-origin: left; transition: transform 1s var(--ease); }
+.journey ol { display: grid; grid-template-columns: repeat(4, 1fr); margin: 13px 0 0; padding: 0; list-style: none; }
+.journey button { display: flex; align-items: baseline; gap: 10px; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: rgba(255,255,255,.5); transition: color .35s; }
+.journey button:hover, .journey button.is-active { color: #fff; }
+.journey button span { font-size: 9px; color: var(--accent); }
+.journey button b { font-size: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: .15em; }
+
+.scene-controls { position: fixed; z-index: 16; right: 4.5vw; bottom: 78px; display: flex; align-items: center; gap: 15px; }
+.scene-controls button { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; background: rgba(9,11,9,.2); backdrop-filter: blur(5px); cursor: pointer; transition: background .25s, color .25s, opacity .25s; }
+.scene-controls button:hover:not(:disabled) { background: var(--ink); color: #151711; }
+.scene-controls button:disabled { opacity: .28; cursor: default; }
+.scene-controls svg { width: 17px; }
+.scene-controls > span { min-width: 48px; text-align: center; font-size: 9px; letter-spacing: .16em; color: rgba(255,255,255,.6); }
+.scene-controls > span b { color: #fff; font-weight: 500; }
+.sound-toggle { position: fixed; z-index: 17; right: 4.5vw; top: 118px; display: flex; align-items: center; gap: 10px; padding: 8px 0; border: 0; background: none; text-transform: uppercase; font-size: 9px; letter-spacing: .14em; cursor: pointer; }
+.sound-toggle > span { display: flex; align-items: end; gap: 2px; height: 12px; }
+.sound-toggle i { display: block; width: 2px; height: 4px; background: var(--accent); }
+.sound-toggle i:nth-child(2) { height: 10px; }
+.sound-toggle i:nth-child(3) { height: 7px; }
+.sound-toggle span.is-playing i { animation: meter .75s ease-in-out infinite alternate; }
+.sound-toggle span.is-playing i:nth-child(2) { animation-delay: -.3s; }
+.sound-toggle span.is-playing i:nth-child(3) { animation-delay: -.5s; }
+@keyframes meter { to { height: 2px; } }
+
+.menu-panel { position: fixed; z-index: 18; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 110px 11vw 80px; background: rgba(17, 19, 15, .94); backdrop-filter: blur(22px); opacity: 0; visibility: hidden; transform: translateY(-3%); transition: opacity .5s, transform .65s var(--ease), visibility .5s; }
+.menu-panel.is-open { opacity: 1; visibility: visible; transform: none; }
+.menu-kicker, .menu-note { text-transform: uppercase; font-size: 9px; letter-spacing: .25em; color: var(--accent); }
+.menu-panel ol { width: min(800px, 100%); margin: 18px 0 24px; padding: 0; list-style: none; }
+.menu-panel li { border-top: 1px solid rgba(255,255,255,.15); }
+.menu-panel li:last-child { border-bottom: 1px solid rgba(255,255,255,.15); }
+.menu-panel li button { display: grid; grid-template-columns: 55px 1fr auto; align-items: center; width: 100%; padding: 18px 0; border: 0; background: none; cursor: pointer; text-align: left; }
+.menu-panel li span { font-size: 10px; color: var(--accent); }
+.menu-panel li b { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(34px, 4vw, 58px); font-weight: 400; transition: transform .35s var(--ease); }
+.menu-panel li button:hover b { transform: translateX(12px); }
+.menu-panel li svg { transition: transform .35s var(--ease); }
+.menu-panel li button:hover svg { transform: translateX(8px); }
+.menu-note { color: rgba(255,255,255,.45); }
+
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+
+@media (max-width: 760px) {
+  .experience { min-height: 440px; }
+  .topbar { height: 72px; padding: 0 20px; grid-template-columns: 1fr 1fr; }
+  .project-label { display: none; }
+  .brand-mark { width: 30px; height: 30px; }
+  .brand-name { font-size: 11px; }
+  .scene-copy { left: 24px; top: 47%; width: calc(100vw - 48px); }
+  .scene h1 { font-size: clamp(58px, 20vw, 98px); line-height: .9; }
+  .description { max-width: min(87vw, 380px); margin-top: 24px; }
+  .scene-coordinate { display: none; }
+  .journey { left: 20px; right: 20px; bottom: 24px; }
+  .journey ol { display: none; }
+  .scene-controls { left: 20px; right: auto; bottom: 48px; }
+  .scene-controls button { width: 40px; height: 40px; }
+  .sound-toggle { top: 88px; right: 20px; }
+  .menu-panel { padding: 86px 24px 50px; }
+  .menu-panel li button { grid-template-columns: 36px 1fr auto; padding: 16px 0; }
+  .menu-panel li b { font-size: clamp(32px, 11vw, 48px); }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .topbar { height: 64px; }
+  .scene-copy { top: 49%; }
+  .scene h1 { font-size: clamp(54px, 11vw, 88px); }
+  .description, .enter-button { margin-top: 18px; }
+  .journey { bottom: 18px; }
+  .scene-controls { bottom: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

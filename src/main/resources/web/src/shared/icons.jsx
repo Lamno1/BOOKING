@@ -1,0 +1,28 @@
+import React from 'react';
+// Small stroke icons (Lucide-style geometry) so no emoji stands in for an icon.
+const Svg=({children,size=18,...rest})=><svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" {...rest}>{children}</svg>;
+export const HeartIcon=({filled,...p})=><Svg {...p}><path fill={filled?'currentColor':'none'} d="M19.5 12.6 12 20l-7.5-7.4A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 7.5 6.3Z"/></Svg>;
+export const CheckIcon=p=><Svg {...p}><path d="m5 12.5 4.2 4.2L19 7"/></Svg>;
+export const CalendarIcon=p=><Svg {...p}><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></Svg>;
+export const UsersIcon=p=><Svg {...p}><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M16 5.2a3 3 0 0 1 0 5.6M17.5 14.2a5 5 0 0 1 3 5.3"/></Svg>;
+export const AreaIcon=p=><Svg {...p}><path d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></Svg>;
+export const ShareIcon=p=><Svg {...p}><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8M5 12.5V19a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19v-6.5"/></Svg>;
+export const ChevronIcon=({dir='right',...p})=><Svg {...p}><path d={dir==='left'?'m15 6-6 6 6 6':'m9 6 6 6-6 6'}/></Svg>;
+export const KitchenIcon=p=><Svg {...p}><path d="M5 3.5v7a2 2 0 0 0 2 2v8M9 3.5v7a2 2 0 0 1-2 2M7 3.5v5M17 20.5v-17c-2 0-3.5 2.2-3.5 6s1.5 5 3.5 5"/></Svg>;
+export const ClockIcon=p=><Svg {...p}><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></Svg>;
+export const HomeIcon=p=><Svg {...p}><path d="M4 10.5 12 4l8 6.5V20H4z"/><path d="M9.5 20v-5.5h5V20"/></Svg>;
+export const SearchIcon=p=><Svg {...p}><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></Svg>;
+export const BagIcon=p=><Svg {...p}><rect x="4" y="7.5" width="16" height="12.5" rx="2"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5"/></Svg>;
+export const ChatIcon=p=><Svg {...p}><path d="M5 18.5V6.5A2 2 0 0 1 7 4.5h10a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H9z"/></Svg>;
+export const UserIcon=p=><Svg {...p}><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></Svg>;
+export const SparkIcon=p=><Svg {...p}><path d="M12 3.5v4M12 16.5v4M3.5 12h4M16.5 12h4M6 6l2.6 2.6M15.4 15.4 18 18M6 18l2.6-2.6M15.4 8.6 18 6"/></Svg>;
+export const DownloadIcon=p=><Svg {...p}><path d="M12 3.5V15M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></Svg>;
+export const StarIcon=({filled,...p})=><Svg {...p}><path fill={filled?'currentColor':'none'} d="m12 3.8 2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8z"/></Svg>;
+export const BathIcon=p=><Svg {...p}><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM6 12V6a2 2 0 0 1 3.6-1.2M7 19l-1 2M17 19l1 2"/></Svg>;
+export const SnowIcon=p=><Svg {...p}><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5"/></Svg>;
+export const WifiIcon=p=><Svg {...p}><path d="M3.5 9.5a12 12 0 0 1 17 0M6.5 12.8a7.5 7.5 0 0 1 11 0M9.5 16a3.2 3.2 0 0 1 5 0"/><circle cx="12" cy="19" r=".8" fill="currentColor"/></Svg>;
+export const DeskIcon=p=><Svg {...p}><path d="M3 9h18M5 9v11M19 9v11M14 9v6h5"/><path d="M8 5.5h5v3.5H8z"/></Svg>;
+export const SofaIcon=p=><Svg {...p}><path d="M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v4H3zM5 17v2M19 17v2"/></Svg>;
+export const CloseIcon=p=><Svg {...p}><path d="M6 6l12 12M18 6 6 18"/></Svg>;
+export const PrintIcon=p=><Svg {...p}><path d="M7 8V3.5h10V8M7 17H4.5v-7.5a1.5 1.5 0 0 1 1.5-1.5h12a1.5 1.5 0 0 1 1.5 1.5V17H17"/><rect x="7" y="14" width="10" height="6.5" rx="1"/></Svg>;
+export const CompareIcon=p=><Svg {...p}><rect x="3.5" y="4" width="7" height="16" rx="1.5"/><rect x="13.5" y="4" width="7" height="16" rx="1.5"/></Svg>;

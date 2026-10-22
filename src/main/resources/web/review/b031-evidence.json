@@ -1,0 +1,63 @@
+{
+  "contract": "ART_DIRECTION_CONTRACT.md section B/03.1. Only B visual refinement, unchanged room/prices/booking; local shade, selective type weights, dominant gallery photo, less pale green.",
+  "targetViewports": [
+    "1440x900",
+    "390x844"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Mobile native details opens with Enter, solid focus outline. Final DOM target check has zero visible links/summary below44px. Text and image contrast visually reviewed; not a formal WCAG audit. Reduced-motion rule retained, no animation introduced."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Desktop1440 and mobile390 inspected with no horizontal overflow. Desktop gallery1126px primary + two550px supporting photos; mobile335px primary + two161px. Typography, CTA and expanded conditions checked."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "not-applicable",
+      "reason": "Static review without API or asynchronous form; fixed image dimensions."
+    },
+    "empty": {
+      "status": "not-applicable",
+      "reason": "Fixed room data, no search."
+    },
+    "error": {
+      "status": "not-applicable",
+      "reason": "No transaction or booking submission."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "Concept image labels and unverified-image note remain; pricing policies marked proposed."
+    },
+    "success": {
+      "status": "not-applicable",
+      "reason": "No booking is saved; only links and native disclosures."
+    },
+    "permission": {
+      "status": "not-applicable",
+      "reason": "No protected operations."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x900",
+      "artifact": "b031-desktop.png",
+      "observation": "Right side furnishings unshaded; left copy protected, darker booking strip with pale CTA."
+    },
+    {
+      "viewport": "1440x900",
+      "artifact": "b031-gallery.png",
+      "observation": "One dominant kitchen photograph, supporting photos aligned beneath."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "b031-mobile.png",
+      "observation": "Mobile room details brighter and small labels heavier; fixed price action."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "b031-gallery-mobile.png",
+      "observation": "Large kitchen image and two aligned supporting photos, no staircase gaps."
+    }
+  ]
+}

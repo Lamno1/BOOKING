@@ -1,0 +1,13 @@
+Edit the supplied STAYOS detailed-page mockup. Preserve the arrangement and ALL architectural photos and overall density, but correct palette and unsupported text precisely.
+1. MUST preserve direction B: replace ALL cream/white page surfaces with warm charcoal #1d2822, cards slightly lighter #29362f, text ivory #f3f0e7, secondary text #c3cbbd, fine borders #5b695b. Pale sage #cfdbad only for the selected breakfast card and CTA, with dark text on sage. No cream page background.
+2. Replace amenities lists entirely with short EXACT controlled text:
+Under "Khu ngủ": "1 giường đôi", "Tối đa 2 khách", "Kích thước giường: cần xác nhận".
+Under "Bếp & sinh hoạt": "Bếp nhỏ", "Khu sinh hoạt", "Thiết bị & dụng cụ: cần xác nhận".
+Under "Phòng tắm riêng": "Phòng tắm riêng", "Bố trí trong ảnh là concept", "Vật dụng cấp kèm: cần xác nhận".
+Delete wardrobe, fridge, cookware, towels, toiletries and all other unverified amenity claims.
+3. Keep title Studio R-101 and 32 m², one double bed, 2 guests, floor 1; retain AC and Wi-Fi as catalog amenities.
+4. Right summary heading "Giá minh họa", exact date 14–16/11/2026 and 2 đêm · 2 khách. Keep correct costs 1.700.000₫ +240.000₫ =1.940.000₫. CTA "Xem lại lựa chọn". Small line "Bản duyệt · không tạo đơn hoặc thu tiền".
+5. Plan cards retain totals and exact benefits 4 suất sáng · 2 ly trà; baguette eggs/water visual may remain. No extra food or benefits.
+6. Bottom left replace flexible-time claim with exact "Nhận 14:00 · Trả 12:00" and "Giờ đề xuất, chờ chủ cơ sở duyệt". Bottom right exact "Địa chỉ, đỗ xe và hướng nhìn: cần xác nhận" and "Chưa đủ thông tin để mở bán". Do not promise this is available at checkout.
+7. Keep label "BẢN ĐỀ XUẤT · ẢNH CONCEPT AI" clearly legible. Header CTA should say "Bộ duyệt".
+All Vietnamese accurate. Do not add copy outside these facts. Preserve clear large photos of overview, bed, kitchen and bathroom.

@@ -1,0 +1,76 @@
+{
+  "revision": "review-02.1-2026-10-17",
+  "status": "proposal-only",
+  "packages": [
+    {
+      "id": "welcome",
+      "name": "Lưu trú · trà chào đón",
+      "perGuestNight": 0,
+      "tea": true,
+      "breakfast": false,
+      "description": "Tặng 1 ly trà 250 ml cho mỗi khách đã đăng ký, một lần khi nhận phòng. Cơ sở chịu chi phí; không quy đổi tiền.",
+      "decision": "D1–D2 · Duyệt giá cơ sở và trà là quyền lợi mặc định"
+    },
+    {
+      "id": "breakfast",
+      "name": "Ở & ăn sáng",
+      "perGuestNight": 60000,
+      "tea": true,
+      "breakfast": true,
+      "description": "Mỗi khách, mỗi đêm ở: 1 bữa sáng ngày kế tiếp gồm bánh mì trứng và 1 nước suối 350 ml. Thêm trà chào đón 1 lần/kỳ ở. Áp dụng cả hai cơ sở.",
+      "decision": "D3 · Duyệt +60.000₫/khách/đêm, thực đơn, bếp và năng lực phục vụ"
+    }
+  ],
+  "benefitRules": {
+    "tea": "1 ly 250 ml/khách/kỳ ở; nhận tại quầy lúc check-in 14:00–22:00; không cần đặt trước; trẻ em tính trong số khách cũng có 1 phần.",
+    "breakfast": "1 suất/khách/đêm, dùng sáng hôm sau 07:00–09:30; nhận tại quầy. Chốt giờ trước 20:00 hôm trước. Không bữa sáng vào ngày đến; có vào ngày trả phòng sau đêm đã ở. Trẻ em dùng cùng định mức; chưa có giá trẻ em riêng. Dị ứng/đổi món phải được nhân viên xác nhận; không tự hứa đáp ứng."
+  },
+  "addons": [
+    {
+      "id": "dining",
+      "name": "Bữa tối hải sản",
+      "price": 650000,
+      "unit": "set / 2 người",
+      "serves": 2,
+      "description": "Một set: tôm hấp 300 g, mực xào 250 g, cá kho 300 g, rau luộc 200 g, 2 phần cơm và 2 nước suối 350 ml. Khối lượng nguyên liệu trước chế biến.",
+      "schedule": "Giao tại quầy cơ sở, 18:00–20:00; đặt trước 12 giờ. Toàn bộ số set đã chọn dùng trong một lần phục vụ.",
+      "conditions": "Cả Residence và Inn. Không gồm rượu, món thêm hoặc phục vụ tại bàn. Khai báo dị ứng hải sản; yêu cầu thay món cần xác nhận. Hủy miễn phí trước 12 giờ; sau đó đề xuất tính đủ giá set đã chuẩn bị.",
+      "decision": "D4 · Duyệt thực đơn, giá, bếp/đối tác và điều kiện hủy"
+    },
+    {
+      "id": "transfer",
+      "name": "Xe đón sân bay riêng",
+      "price": 850000,
+      "unit": "xe / 1 chiều",
+      "serves": 4,
+      "description": "Xe 7 chỗ, tối đa 4 khách + 4 vali cỡ vừa. Một chiều từ sân bay Tân Sơn Nhất đến cơ sở STAYOS được chọn ở Vũng Tàu; không ghép khách.",
+      "schedule": "Đặt trước 24 giờ, cung cấp chuyến bay; gồm 60 phút chờ từ giờ hạ cánh thực tế.",
+      "conditions": "Cả hai cơ sở. Đề xuất giá gồm phí cầu đường và đỗ xe; không thêm điểm dừng. Chờ vượt 60 phút phải báo giá và được khách đồng ý trước; không thu tự động. Hủy miễn phí trước 24 giờ; muộn hơn đề xuất phí 50%.",
+      "decision": "D5 · Duyệt tuyến/giá trọn gói, đối tác và phí hủy"
+    },
+    {
+      "id": "spa",
+      "name": "Thư giãn 60 phút",
+      "price": 550000,
+      "unit": "người / buổi",
+      "serves": 1,
+      "description": "Massage thư giãn cơ thể 60 phút cho 1 người từ 18 tuổi; không phải trị liệu y khoa.",
+      "schedule": "Đặt trước 24 giờ, khung 09:00–18:00; dùng tại đối tác, không tại phòng.",
+      "conditions": "Khách cả hai cơ sở có thể đăng ký. Không gồm xe đưa đón; không cam kết hiệu quả sức khỏe. Hủy miễn phí trước 12 giờ, muộn hơn đề xuất phí 50%.",
+      "decision": "D6 · Duyệt đối tác, địa điểm, điều kiện an toàn và phí hủy"
+    },
+    {
+      "id": "tour",
+      "name": "Dạo phố biển 3 giờ",
+      "price": 450000,
+      "unit": "người / lượt",
+      "serves": 1,
+      "description": "Một lượt đi bộ cùng hướng dẫn: Bãi Trước → Công viên Bãi Trước → khu phố Quang Trung, có điểm nghỉ. Gồm 1 nước suối 500 ml/người, nhóm tối đa 6 khách.",
+      "schedule": "Đề xuất 07:00–10:00, đặt trước 24 giờ; điểm gặp tại Công viên Bãi Trước.",
+      "conditions": "Cả hai cơ sở; không gồm xe, bữa ăn hoặc vé điểm tham quan. Trẻ dưới 18 tuổi đi cùng người lớn, cùng giá. Thời tiết không an toàn: đổi lịch hoặc hoàn đủ. Khách hủy trước 24 giờ miễn phí, muộn hơn đề xuất phí 50%.",
+      "decision": "D7 · Duyệt tuyến, hướng dẫn viên, an toàn và điều kiện hủy"
+    }
+  ],
+  "policy": "Đề xuất để duyệt: nhận phòng 14:00, trả 12:00; giá trọn gói gồm thuế, vệ sinh 0₫, cọc 0₫; không quá sức chứa. Hủy phòng miễn phí trước 18:00 ngày liền trước ngày đến; sau đó phí một đêm phòng + phần nâng gói của đêm đó. Mua thêm áp dụng hạn hủy riêng. Không thu tiền trong bản duyệt.",
+  "policyDecision": "D8 · Chủ cơ sở duyệt thuế, phí, cọc, thời hạn hủy; chưa thay chính sách demo hiện hành"
+}

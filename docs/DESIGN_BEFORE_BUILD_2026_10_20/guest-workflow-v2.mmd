@@ -1,0 +1,10 @@
+flowchart TD
+  A[Khách mở chi tiết Studio R-101] --> B[Xem tổng thể, khu ngủ, bếp và phòng tắm]
+  B --> C[Đọc diện tích, sức chứa, tiện nghi và giới hạn concept]
+  C --> D{Đủ thông tin thực tế để quyết định?}
+  D -->|Chưa| E[Yêu cầu cơ sở xác nhận thông tin còn thiếu]
+  E --> C
+  D -->|Đủ| F[So gói và xem tổng giá, định mức, lịch quyền lợi]
+  F --> G[Đọc điều kiện và chọn dịch vụ mua thêm nếu cần]
+  G --> H[Xem lại toàn bộ lựa chọn]
+  H --> I[Xác nhận qua hệ thống booking khi đã tích hợp]

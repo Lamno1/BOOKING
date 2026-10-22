@@ -1,0 +1,20 @@
+{
+ "contract":"design-system/stayos-booking/pages/guest-operations.md; guest support/date change and separate admin queue/calendar, no unapproved commercial integration",
+ "targetViewports":["1440x900","390x844"],
+ "accessibility":{"status":"untested","evidence":"Keyboard date segments changed arrival/departure and submitted quote; native Tab focused admin brand with visible solid outline. Visible labels and text status inspected. Full screen-reader, contrast-matrix and OS reduced-motion testing remain untested; this is not an accessibility certification."},
+ "responsive":{"status":"pass","evidence":"Rendered guest support and admin queue at390x844: innerWidth390/document scrollWidth375, no page horizontal overflow. Admin nav/calendar are deliberate scroll regions. Desktop1440x900 queue/calendar screenshots inspected."},
+ "contentStates":{
+  "loading":{"status":"pass","evidence":"Observed disabled Đang gửi… on guest support and Đang xác thực… on admin login; success followed without duplicate requests."},
+  "empty":{"status":"pass","evidence":"Guest initial Chưa có yêu cầu nào and admin zero-open queue Không có yêu cầu phù hợp after resolving both requests; filter all restores retained history."},
+  "error":{"status":"pass","evidence":"Unchanged dates server rejection rendered Hãy chọn ngày ở khác với đơn hiện tại; form remained available, subsequently corrected through keyboard and preview succeeded."},
+  "partial":{"status":"pass","evidence":"Stay summary retains saved price/policy while explaining unverified address/contact; no invented directions or charges. These real-world data gaps remain open."},
+  "success":{"status":"pass","evidence":"Created RQ-1AA82226 and RQ-97C58D3C; staff replied/resolved and approved dates; guest re-login saw response, dates22–25Oct and2550000; admin calendar nights22,23,24 occupied, checkout25free."},
+  "permission":{"status":"pass","evidence":"Main5174 signed-out support displays login boundary; QA admin signed-out displays dedicated login. Automated API tests verify other guest access denied and guest admin decision403."}
+ },
+ "renderedEvidence":[
+  {"viewport":"1440x900","artifact":"operations-admin-closed-desktop.jpg","observation":"Actual QA admin retained approved date request, old/new dates and totals; no production customer records."},
+  {"viewport":"1440x900","artifact":"operations-calendar-desktop.jpg","observation":"R101 new occupied nights after approval and checkout-free day."},
+  {"viewport":"390x844","artifact":"operations-thread-mobile.jpg","observation":"Guest sees real persisted staff reply and resolved towel request after re-login."},
+  {"viewport":"390x844","artifact":"operations-admin-thread-mobile.jpg","observation":"Admin date comparison and approved status wrap within mobile panel."}
+ ]
+}

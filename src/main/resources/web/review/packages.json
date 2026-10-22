@@ -1,0 +1,115 @@
+{
+  "status": "proposal-only",
+  "revision": "review-2026-10-14",
+  "currency": "VND",
+  "packages": [
+    {
+      "id": "essential",
+      "name": "Chỉ lưu trú",
+      "properties": [
+        "residence",
+        "inn"
+      ],
+      "nightlySupplement": 0,
+      "amenities": "Theo đúng loại phòng: Residence có bếp nhỏ/khu sinh hoạt; Inn có phòng tắm riêng, bàn làm việc, Wi-Fi, điều hòa.",
+      "benefits": [],
+      "conditions": "Không có quà tặng hay bữa ăn. Sức chứa theo phòng. Không phụ thu tự động.",
+      "decision": "D1: Duyệt giá cơ sở, thuế/phí và chính sách hủy. Giá hiện tại chỉ là demo."
+    },
+    {
+      "id": "welcome",
+      "name": "Chào STAYOS",
+      "properties": [
+        "residence",
+        "inn"
+      ],
+      "nightlySupplement": 0,
+      "benefits": [
+        {
+          "id": "tea",
+          "name": "Trà chào đón",
+          "people": 2,
+          "uses": "1 lần / kỳ lưu trú",
+          "schedule": "Nhận tại quầy khi check-in; không cần đặt lịch",
+          "included": true,
+          "extraCharge": 0
+        }
+      ],
+      "conditions": "Đề xuất tối đa 2 khách/đơn, 1 phần/người, không quy đổi tiền. Chưa hứa phục vụ cho đến khi duyệt.",
+      "decision": "D2: Có tặng trà không? Xác nhận 2 suất, chi phí cơ sở chịu và khả năng phục vụ."
+    },
+    {
+      "id": "slow",
+      "name": "Buổi sáng thong thả",
+      "properties": [
+        "residence"
+      ],
+      "nightlySupplement": 120000,
+      "benefits": [
+        {
+          "id": "breakfast",
+          "name": "Bữa sáng cho hai người",
+          "people": 2,
+          "uses": "1 lần / người / đêm ở",
+          "schedule": "07:00–09:30 ngày kế tiếp mỗi đêm; báo giờ trước 20:00 hôm trước",
+          "included": true,
+          "extraCharge": 0
+        }
+      ],
+      "conditions": "Chỉ Residence, tối đa 2 khách trong mockup. Không bao gồm bữa tối/spa/xe. Giá gói bằng giá phòng + 120.000₫/đêm, không tính bữa sáng thêm lần nữa.",
+      "decision": "D3: Duyệt giá +120.000₫, thực đơn, nơi phục vụ, giờ và chính sách trẻ em."
+    }
+  ],
+  "addons": [
+    {
+      "id": "transfer",
+      "name": "Xe đón riêng",
+      "price": 850000,
+      "unit": "1 xe / 1 chiều",
+      "properties": [
+        "residence",
+        "inn"
+      ],
+      "description": "Xe 4 chỗ, tối đa 3 khách và 2 vali; tuyến đón phải được chốt trước.",
+      "conditions": "Đặt trước ít nhất 24 giờ. Chưa bao gồm phí chờ, cầu đường khi chưa có báo giá.",
+      "decision": "D4: Chốt đối tác, tuyến, giá trọn gói và phí chờ."
+    },
+    {
+      "id": "dining",
+      "name": "Bữa tối hải sản",
+      "price": 650000,
+      "unit": "1 set / 2 người",
+      "properties": [
+        "residence"
+      ],
+      "description": "Một set dùng chung cho 2 khách; cần thông tin dị ứng và khẩu phần.",
+      "conditions": "Đặt trước 12 giờ; khung giờ đề xuất 18:00–20:00. Không thuộc gói bữa sáng.",
+      "decision": "D5: Chốt thực đơn, bếp/đối tác và địa điểm phục vụ."
+    },
+    {
+      "id": "spa",
+      "name": "Thư giãn 60 phút",
+      "price": 550000,
+      "unit": "1 người / 1 buổi",
+      "properties": [
+        "residence"
+      ],
+      "description": "Một buổi 60 phút tại đối tác được xác nhận; không mặc định có spa tại cơ sở.",
+      "conditions": "Đặt trước 24 giờ, theo lịch đối tác; không bao gồm xe đưa đón.",
+      "decision": "D6: Có bán dịch vụ này không? Chốt đối tác và phạm vi phục vụ."
+    },
+    {
+      "id": "tour",
+      "name": "Dạo Vũng Tàu",
+      "price": 450000,
+      "unit": "1 người / 1 lượt",
+      "properties": [
+        "residence",
+        "inn"
+      ],
+      "description": "Chuyến khám phá địa phương dự kiến 3 giờ; hành trình cần được công bố.",
+      "conditions": "Đặt trước 24 giờ; điều kiện thời tiết, vé vào cửa và di chuyển chưa chốt.",
+      "decision": "D7: Chốt tuyến, đơn vị tổ chức, gồm/không gồm và điều kiện hủy."
+    }
+  ]
+}

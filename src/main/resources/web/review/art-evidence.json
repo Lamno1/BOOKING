@@ -1,0 +1,73 @@
+{
+  "contract": "ART_DIRECTION_CONTRACT.md — same Studio R-101 detail/package screen, two visual directions, no booking mutations; imagery/typography/spacing first.",
+  "targetViewports": [
+    "1440x900",
+    "390x844"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "A/B conditions opened with Enter, visible solid focus ring. Rendered desktop links/summary targets measured >=44px. Mobile CTA and direction links exercised. Vietnamese text inspected in screenshots. Core solid color contrasts A body5.33/CTA6.51 and B body8.38/CTA10.92. Image-overlay text visually inspected, not a formal full WCAG audit. CSS honors reduced-motion by disabling smooth scrolling; no animations."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Both directions rendered at1440x900 and390x844 without horizontal overflow. Inspected hero, gallery and package sections. Mobile fixed price bar remains usable and page has bottom clearance."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "not-applicable",
+      "reason": "Static art review, no asynchronous data or booking loading flow; local image regions reserve dimensions."
+    },
+    "empty": {
+      "status": "not-applicable",
+      "reason": "Fixed shared room content, no search or empty result state in this visual comparison."
+    },
+    "error": {
+      "status": "not-applicable",
+      "reason": "No form submission, API or transaction on this art review; production errors remain in unchanged Review02.1."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "Hero and gallery label concept imagery; asset note states AI/unverified and no view promise; conditions explicitly proposal-only."
+    },
+    "success": {
+      "status": "not-applicable",
+      "reason": "No booking saved; native anchor navigation and details expansion checked instead."
+    },
+    "permission": {
+      "status": "not-applicable",
+      "reason": "No account, permission request or protected operation."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x900",
+      "artifact": "art-a-desktop.png",
+      "observation": "A: large left image, editorial right text, room facts and price visible in first fold."
+    },
+    {
+      "viewport": "1440x900",
+      "artifact": "art-b-desktop.png",
+      "observation": "B: immersive room image cropped to bed/living area, legible overlay, pale booking strip."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "art-a-mobile.png",
+      "observation": "A stacked image then heading; Vietnamese accents readable and price action fixed."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "art-b-mobile.png",
+      "observation": "B immersive portrait crop, text/photo hierarchy and bottom price action."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "art-a-packages-mobile.png",
+      "observation": "A packages use white space and thin rules, no radio/form appearance."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "art-b-packages-mobile.png",
+      "observation": "B packages use two solid surfaces with clear included tea/breakfast totals."
+    }
+  ]
+}
