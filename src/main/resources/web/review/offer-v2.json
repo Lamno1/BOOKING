@@ -43,7 +43,7 @@
       "price": 850000,
       "unit": "xe / 1 chiều",
       "serves": 4,
-      "description": "Xe 7 chỗ, tối đa 4 khách + 4 vali cỡ vừa. Một chiều từ sân bay Tân Sơn Nhất đến cơ sở STAYOS được chọn ở Vũng Tàu; không ghép khách.",
+      "description": "Xe 7 chỗ, tối đa 4 khách + 4 vali cỡ vừa. Một chiều từ sân bay Tân Sơn Nhất đến cơ sở STAYOS được chọn tại TP. Hồ Chí Minh; không ghép khách.",
       "schedule": "Đặt trước 24 giờ, cung cấp chuyến bay; gồm 60 phút chờ từ giờ hạ cánh thực tế.",
       "conditions": "Cả hai cơ sở. Đề xuất giá gồm phí cầu đường và đỗ xe; không thêm điểm dừng. Chờ vượt 60 phút phải báo giá và được khách đồng ý trước; không thu tự động. Hủy miễn phí trước 24 giờ; muộn hơn đề xuất phí 50%.",
       "decision": "D5 · Duyệt tuyến/giá trọn gói, đối tác và phí hủy"
@@ -68,7 +68,9 @@
       "description": "Một lượt đi bộ cùng hướng dẫn: Bãi Trước → Công viên Bãi Trước → khu phố Quang Trung, có điểm nghỉ. Gồm 1 nước suối 500 ml/người, nhóm tối đa 6 khách.",
       "schedule": "Đề xuất 07:00–10:00, đặt trước 24 giờ; điểm gặp tại Công viên Bãi Trước.",
       "conditions": "Cả hai cơ sở; không gồm xe, bữa ăn hoặc vé điểm tham quan. Trẻ dưới 18 tuổi đi cùng người lớn, cùng giá. Thời tiết không an toàn: đổi lịch hoặc hoàn đủ. Khách hủy trước 24 giờ miễn phí, muộn hơn đề xuất phí 50%.",
-      "decision": "D7 · Duyệt tuyến, hướng dẫn viên, an toàn và điều kiện hủy"
+      "decision": "D7 · Duyệt tuyến, hướng dẫn viên, an toàn và điều kiện hủy",
+      "available": false,
+      "unavailableReason": "Tạm ngưng: lộ trình cũ thuộc Vũng Tàu; chờ cơ sở TP. Hồ Chí Minh xác nhận tour mới."
     }
   ],
   "policy": "Đề xuất để duyệt: nhận phòng 14:00, trả 12:00; giá trọn gói gồm thuế, vệ sinh 0₫, cọc 0₫; không quá sức chứa. Hủy phòng miễn phí trước 18:00 ngày liền trước ngày đến; sau đó phí một đêm phòng + phần nâng gói của đêm đó. Mua thêm áp dụng hạn hủy riêng. Không thu tiền trong bản duyệt.",

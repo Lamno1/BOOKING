@@ -29,6 +29,8 @@ export function SupportChat({open,onOpenChange,preset,user,bookings=[],tickets=[
  const [view,setView]=useState('assistant'),[seen,setSeen]=useState(()=>readSeen()),[draft,setDraft]=useState(null);
  const launcher=useRef(null),panel=useRef(null),wasOpen=useRef(false),opener=useRef(null);
  const unread=totalUnread(tickets,seen),thread=tickets.find(t=>t.id===view);
+ // Signing out (or in as someone else) erases the previous account's assistant transcript from this tab.
+ useEffect(()=>{try{const stored=JSON.parse(sessionStorage.getItem(ASSISTANT_KEY)||'{}');if(stored?.owner!==undefined&&stored.owner!==(user?.email||''))sessionStorage.removeItem(ASSISTANT_KEY);}catch{}},[user?.email]);
  useEffect(()=>{
   if(open&&!wasOpen.current){opener.current=document.activeElement;setDraft(null);setView(preset&&user?'new':'assistant');}
   // Back to whatever opened the chat (tab bar, trip card); the launcher is hidden on phones.

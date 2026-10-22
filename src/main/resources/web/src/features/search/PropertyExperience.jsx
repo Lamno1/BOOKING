@@ -49,7 +49,7 @@ export function RoomVisual({room,compact=false}) {
 }
 
 export function PropertyFacts({property}) {
-  return <section className="property-facts"><h3>Thông tin {property.name}</h3><dl><div><dt>Địa điểm</dt><dd>{property.city}<br/>{property.address||property.addressStatus}</dd></div><div><dt>Đỗ xe / đi biển</dt><dd>{property.parking}<br/>{property.beachDistance}</dd></div><div><dt>Nhận chìa khóa</dt><dd>{property.checkInMethod}</dd></div><div><dt>Liên hệ</dt><dd>{property.phone||'Số điện thoại chưa được công bố'}<br/>{property.email||'Email hỗ trợ chưa được cấu hình'}</dd></div></dl><p className="room-detail-note">Đây là cơ sở mô phỏng, chưa mở bán thực tế. Chưa cung cấp chỉ đường khi địa chỉ chưa được xác nhận.</p></section>;
+  return <section className="property-facts"><h3>Thông tin {property.name}</h3><dl><div><dt>Địa điểm</dt><dd>{property.city}<br/>{property.address||property.addressStatus}</dd></div><div><dt>Đỗ xe</dt><dd>{property.parking}{property.beachDistance&&<><br/>{property.beachDistance}</>}</dd></div><div><dt>Nhận chìa khóa</dt><dd>{property.checkInMethod}</dd></div><div><dt>Liên hệ</dt><dd>{property.phone||'Số điện thoại chưa được công bố'}<br/>{property.email||'Email hỗ trợ chưa được cấu hình'}</dd></div></dl><p className="room-detail-note">Đây là cơ sở mô phỏng, chưa mở bán thực tế. Chưa cung cấp chỉ đường khi địa chỉ chưa được xác nhận.</p></section>;
 }
 
 export function StayPolicies({property}) {

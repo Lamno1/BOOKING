@@ -13,7 +13,7 @@ final class ServiceRequests extends Feature {
 
   public JsonObject addService(User user,JsonObject input) throws SQLException {
     if(input.has("offerVersion"))return addOfferService(user,input);
-    String bookingId=text(input,"bookingId",50);var service=item("services",text(input,"serviceId",40));long start=number(input,"start");
+    String bookingId=text(input,"bookingId",50);var service=bookable(item("services",text(input,"serviceId",40)));long start=number(input,"start");
     return transaction(()->{
       var row=find("stay_bookings",bookingId);access(user,row);var b=row.data();
       if(!Set.of("CONFIRMED","CHECKED_IN").contains(b.get("status").getAsString()))throw new Failure(409,"Kỳ nghỉ đã kết thúc hoặc đã hủy.");

@@ -51,7 +51,7 @@ class RouterTest {
     try(var auth=new AuthService(url,"admin@example.test","test-admin-password",false);var bookings=new BookingService(url)){
       var open=new AuthServer(auth,bookings,0).router().routes().stream().filter(r->r.access()==Access.PUBLIC).map(r->r.method()+" "+r.template()).toList();
       assertEquals(List.of("GET /api/health","GET /api/availability","GET /api/rooms/{room}/calendar","GET /api/rooms/{room}/reviews","GET /api/reviews/summary",
-        "POST /api/auth/login","POST /api/auth/register"),open,"a new public route must be a deliberate decision");
+        "POST /api/auth/login","POST /api/auth/register","POST /api/auth/reset"),open,"a new public route must be a deliberate decision");
     }
   }
 }

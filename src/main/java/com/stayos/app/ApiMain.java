@@ -16,6 +16,7 @@ public final class ApiMain {
     System.setProperty("sun.net.httpserver.maxRspTime","60");
     System.setProperty("jdk.httpserver.maxConnections","2000");
     var config=ServerConfig.fromEnvironment(System.getenv());
+    System.setProperty("stayos.accessLog",Boolean.toString(!"off".equalsIgnoreCase(System.getenv("STAYOS_ACCESS_LOG"))));
     Path file=Path.of(System.getenv().getOrDefault("STAYOS_DATABASE","data/stayos-web.sqlite")).toAbsolutePath();
     Files.createDirectories(file.getParent());
     var auth=new AuthService("jdbc:sqlite:"+file);

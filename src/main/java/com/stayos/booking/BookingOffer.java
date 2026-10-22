@@ -38,7 +38,7 @@ final class BookingOffer {
  String revision(){return source.get("revision").getAsString();}
  /** Validates one scheduled add-on against the stay and the server clock; the price always comes from the offer file. */
  JsonObject service(String id,int quantity,JsonObject schedule,String arrival,String departure){
-  var service=find("addons",id);if(quantity<1||quantity>6)throw new Failure(400,"Số lượng dịch vụ chưa hợp lệ.");
+  var service=Ledger.bookable(find("addons",id));if(quantity<1||quantity>6)throw new Failure(400,"Số lượng dịch vụ chưa hợp lệ.");
   String date=text(schedule,"date",10),time=text(schedule,"time",5);LocalDate day;LocalTime hour;ZonedDateTime at;
   try{day=LocalDate.parse(date);hour=LocalTime.parse(time);if(!day.toString().equals(date)||!time.matches("[0-2][0-9]:[0-5][0-9]"))throw new Exception();at=day.atTime(hour).atZone(ZONE);}catch(Exception e){throw new Failure(400,"Ngày giờ phục vụ chưa hợp lệ.");}
   int lead=id.equals("dining")?12:24;if(at.toInstant().toEpochMilli()-System.currentTimeMillis()<lead*3600000L)throw new Failure(400,"Dịch vụ cần đặt trước "+lead+" giờ.");

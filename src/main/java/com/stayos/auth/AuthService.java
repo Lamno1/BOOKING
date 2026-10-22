@@ -48,6 +48,7 @@ public final class AuthService implements AutoCloseable {
     }
     try(var s=connection.createStatement()){
       s.execute("CREATE TABLE IF NOT EXISTS auth_sessions (token_hash TEXT PRIMARY KEY, email TEXT NOT NULL, expires_at INTEGER NOT NULL)");
+      s.execute("CREATE TABLE IF NOT EXISTS password_resets (email TEXT PRIMARY KEY, code_hash TEXT NOT NULL, expires_at INTEGER NOT NULL, issued_by TEXT NOT NULL)");
       s.execute("CREATE TABLE IF NOT EXISTS account_audit (id INTEGER PRIMARY KEY, actor TEXT NOT NULL, target TEXT NOT NULL, status TEXT NOT NULL, at INTEGER NOT NULL)");
       s.execute("DELETE FROM auth_sessions WHERE expires_at<"+System.currentTimeMillis());
     }
@@ -170,6 +171,46 @@ public final class AuthService implements AutoCloseable {
       try(var s=connection.prepareStatement("INSERT INTO account_audit(actor,target,status,at) VALUES(?,?,?,?)")){s.setString(1,actor.email());s.setString(2,email);s.setString(3,status);s.setLong(4,System.currentTimeMillis());s.executeUpdate();}
       connection.commit();
     }catch(SQLException|RuntimeException e){connection.rollback();throw e;}finally{connection.setAutoCommit(true);}
+  }
+  // ---- Staff-assisted password reset (no mail service yet) ----
+  // The guest calls the hotline, staff confirm who they are, and issue a one-time code valid for 30 minutes.
+  private static final long RESET_MS=30*60_000L;
+  private static final String RESET_ALPHABET="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  /** Admin only. Returns the plain code once; only its hash is stored. A new code replaces the previous one. */
+  public synchronized String issueResetCode(User actor,String email)throws SQLException{
+    if(!"admin".equals(actor.role()))throw new Failure(403,"Bạn không có quyền quản trị.");
+    String target=email==null?"":email.trim().toLowerCase(Locale.ROOT);
+    try(var s=connection.prepareStatement("SELECT role FROM users WHERE email=?")){
+      s.setString(1,target);try(var r=s.executeQuery()){if(!r.next())throw new Failure(404,"Không tìm thấy tài khoản.");if(!"guest".equals(r.getString(1)))throw new Failure(403,"Không cấp mã cho tài khoản quản trị tại đây.");}
+    }
+    var code=new StringBuilder();for(int i=0;i<10;i++)code.append(RESET_ALPHABET.charAt(random.nextInt(RESET_ALPHABET.length())));
+    try(var s=connection.prepareStatement("INSERT INTO password_resets VALUES(?,?,?,?) ON CONFLICT(email) DO UPDATE SET code_hash=excluded.code_hash,expires_at=excluded.expires_at,issued_by=excluded.issued_by")){
+      s.setString(1,target);s.setString(2,tokenHash(code.toString()));s.setLong(3,System.currentTimeMillis()+RESET_MS);s.setString(4,actor.email());s.executeUpdate();
+    }
+    try(var s=connection.prepareStatement("INSERT INTO account_audit(actor,target,status,at) VALUES(?,?,?,?)")){s.setString(1,actor.email());s.setString(2,target);s.setString(3,"RESET_CODE_ISSUED");s.setLong(4,System.currentTimeMillis());s.executeUpdate();}
+    return code.toString();
+  }
+  /** Sets a new password with a valid code. Wrong codes count toward the same lockout as wrong passwords. */
+  public boolean resetWithCode(String email,String code,String next){
+    if(email==null||code==null||next==null||next.length()<12||next.length()>256||code.length()>20)return false;
+    String target=email.trim().toLowerCase(Locale.ROOT);
+    if(lockedOut(target))throw new Failure(429,"Tài khoản tạm khóa 15 phút do nhập sai nhiều lần.");
+    String salt=salt(),hash=hash(next,salt);
+    synchronized(this){
+      try{
+        connection.setAutoCommit(false);
+        try{
+          try(var s=connection.prepareStatement("DELETE FROM password_resets WHERE email=? AND code_hash=? AND expires_at>?")){
+            s.setString(1,target);s.setString(2,tokenHash(code.trim().toUpperCase(Locale.ROOT)));s.setLong(3,System.currentTimeMillis());
+            if(s.executeUpdate()!=1){connection.rollback();failed(target);return false;}
+          }
+          try(var s=connection.prepareStatement("UPDATE users SET password_hash=?,salt=? WHERE email=? AND role='guest'")){s.setString(1,hash);s.setString(2,salt);s.setString(3,target);if(s.executeUpdate()!=1){connection.rollback();return false;}}
+          try(var s=connection.prepareStatement("DELETE FROM auth_sessions WHERE email=?")){s.setString(1,target);s.executeUpdate();}
+          connection.commit();failures.remove(target);return true;
+        }catch(SQLException|RuntimeException e){connection.rollback();throw e;}
+        finally{connection.setAutoCommit(true);}
+      }catch(SQLException e){throw new IllegalStateException("Account storage unavailable",e);}
+    }
   }
   public synchronized void logout(String token){if(token==null)return;try(var s=connection.prepareStatement("DELETE FROM auth_sessions WHERE token_hash=?")){s.setString(1,tokenHash(token));s.executeUpdate();}catch(SQLException e){throw new IllegalStateException(e);}}
   private boolean verify(String password,String salt,String stored){

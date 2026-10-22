@@ -116,6 +116,31 @@ class SecurityTest {
     assertTrue(ServerConfig.fromEnvironment(Map.of("STAYOS_BIND","0.0.0.0")).isPublic());
   }
 
+  HttpResponse<String> post(String path,String json,String cookie)throws Exception{
+    var b=HttpRequest.newBuilder(URI.create("http://127.0.0.1:"+server.port()+path)).header("Content-Type","application/json");
+    if(cookie!=null)b.header("Cookie",cookie);
+    return client.send(b.POST(HttpRequest.BodyPublishers.ofString(json)).build(),HttpResponse.BodyHandlers.ofString());
+  }
+  @Test void staffIssuedResetCodeWorksOnceForGuestsOnly()throws Exception{
+    start(ServerConfig.local());
+    auth.register("guest@example.test","old-guest-password","Guest");
+    String guestCookie=login("guest@example.test","old-guest-password").headers().firstValue("Set-Cookie").orElseThrow().split(";")[0];
+    String adminCookie=login("admin@example.test","test-admin-password").headers().firstValue("Set-Cookie").orElseThrow().split(";")[0];
+    assertEquals(403,post("/api/admin/users/reset-code","{\"email\":\"guest@example.test\"}",guestCookie).statusCode(),"guests cannot issue codes");
+    assertEquals(403,post("/api/admin/users/reset-code","{\"email\":\"admin@example.test\"}",adminCookie).statusCode(),"no codes for staff accounts");
+    var issued=post("/api/admin/users/reset-code","{\"email\":\"guest@example.test\"}",adminCookie);
+    assertEquals(200,issued.statusCode(),issued.body());
+    String code=com.google.gson.JsonParser.parseString(issued.body()).getAsJsonObject().get("code").getAsString();
+    assertEquals(10,code.length());
+    assertEquals(400,post("/api/auth/reset","{\"email\":\"guest@example.test\",\"code\":\"WRONGCODE1\",\"newPassword\":\"brand-new-password\"}",null).statusCode());
+    assertEquals(400,post("/api/auth/reset","{\"email\":\"guest@example.test\",\"code\":\""+code+"\",\"newPassword\":\"short\"}",null).statusCode());
+    assertEquals(200,post("/api/auth/reset","{\"email\":\"guest@example.test\",\"code\":\""+code.toLowerCase()+"\",\"newPassword\":\"brand-new-password\"}",null).statusCode());
+    assertEquals(400,post("/api/auth/reset","{\"email\":\"guest@example.test\",\"code\":\""+code+"\",\"newPassword\":\"another-new-password\"}",null).statusCode(),"one use only");
+    assertEquals(401,get("/api/state","Cookie",guestCookie).statusCode(),"old sessions end");
+    assertEquals(401,login("guest@example.test","old-guest-password").statusCode());
+    assertEquals(200,login("guest@example.test","brand-new-password").statusCode());
+  }
+
   @Test void configurationRejectsMalformedOrigins(){
     assertThrows(IllegalArgumentException.class,()->ServerConfig.fromEnvironment(Map.of("STAYOS_ALLOWED_ORIGINS","javascript:alert(1)")));
     assertTrue(ServerConfig.fromEnvironment(Map.of("STAYOS_ALLOWED_ORIGINS","https://stayos.vn, https://www.stayos.vn")).origins().contains("https://www.stayos.vn"));

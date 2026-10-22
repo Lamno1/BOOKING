@@ -81,5 +81,8 @@ public final class BookingService implements AutoCloseable {
   public synchronized JsonObject replyReview(User user, String id, JsonObject input) throws SQLException { return reviews.replyReview(user, id, input); }
   public synchronized JsonObject moderateReview(User user, String id, JsonObject input) throws SQLException { return reviews.moderateReview(user, id, input); }
 
+  /** Health check: the ledger answers a trivial query. */
+  public synchronized boolean ping() { try (var s = ledger.db.createStatement(); var r = s.executeQuery("SELECT 1")) { return r.next(); } catch (SQLException e) { return false; } }
+
   @Override public synchronized void close() throws SQLException { ledger.close(); }
 }

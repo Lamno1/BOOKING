@@ -10,6 +10,7 @@ export function cleanCheckoutDraft(value,offer,now=Date.now()){
  const draft={...empty,planId:offer.packages.some(p=>p.id===value.planId)?value.planId:empty.planId,open:value.open===true&&now-value.savedAt<=REOPEN_MAX_AGE};
  const text=(v,pattern,max)=>typeof v==='string'&&v.length<=max&&(v===''||pattern.test(v))?v:'';
  for(const addon of offer.addons){
+  if(addon.available===false)continue;
   const quantity=value.quantities?.[addon.id];
   if(Number.isInteger(quantity)&&quantity>0&&quantity<=6)draft.quantities[addon.id]=quantity;
   const schedule=value.schedules?.[addon.id];

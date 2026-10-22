@@ -12,3 +12,7 @@ test('booking build contains no architecture entry, meshes, HDR or Three.js',()=
   assert.ok(!readFileSync(resolve(root,'src/app/booking.jsx'),'utf8').includes("api('admin/"));
   assert.ok(!readFileSync(resolve(root,'src/app/booking.jsx'),'utf8').includes('IntroJourney'));
 });
+test('room photos are bundled (import.meta.glob paths survive file moves)',()=>{
+  const assets=readdirSync(resolve(root,'dist/assets'));
+  assert.ok(assets.filter(f=>/^(studio|quad)-\d-(large|small)-.*\.webp$/.test(f)).length>=16,'room concept photos missing from the build');
+});

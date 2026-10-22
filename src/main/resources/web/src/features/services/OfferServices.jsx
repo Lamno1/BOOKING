@@ -26,7 +26,7 @@ export function OfferServices({booking,requests,onSaved}){
  }
  if(!active)return <p>Kỳ nghỉ {booking.id} không còn hoạt động; không thể thêm dịch vụ.</p>;
  return <><p className="offer-services-context">Thêm cho {booking.roomName} · {formatStayDate(booking.arrival)} → {formatStayDate(booking.departure)} · {booking.guests} khách. Danh mục cùng gói đã đặt; giá và định mức là đề xuất demo.</p>
- <h2>Dịch vụ theo gói đã đặt</h2><div className="service-grid offer-services">{offer.addons.filter(a=>a.id!=='transfer'||!hasTransfer).map(addon=>{const c=choice(addon.id);return <form key={addon.id} onSubmit={event=>submit(event,addon)} aria-label={`Thêm ${addon.name}`}>
+ <h2>Dịch vụ theo gói đã đặt</h2><div className="service-grid offer-services">{offer.addons.filter(a=>a.available!==false&&(a.id!=='transfer'||!hasTransfer)).map(addon=>{const c=choice(addon.id);return <form key={addon.id} onSubmit={event=>submit(event,addon)} aria-label={`Thêm ${addon.name}`}>
   <p className="overline">{money(addon.price)} / {addon.unit}</p><h3>{addon.name}</h3><p>{addon.description}</p>
   <div className="offer-service-fields"><label>Số lượng<select value={c.quantity} onChange={e=>update(addon.id,'quantity',Number(e.target.value))}>{[1,2,3,4,5,6].map(n=><option key={n} value={n}>{n} {addon.unit}</option>)}</select></label>
    <label>Ngày<input type="date" min={addon.id==='transfer'?booking.arrival:dateAfter(0)} max={addon.id==='transfer'?booking.arrival:booking.departure} value={c.date} onChange={e=>update(addon.id,'date',e.target.value)} required/></label>

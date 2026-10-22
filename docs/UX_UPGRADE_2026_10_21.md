@@ -329,3 +329,17 @@ Requested by the user: the chat must answer at any hour, check speed and load, s
 Checks: 71 web tests, 34 Java tests; Lighthouse accessibility 100 with the assistant open; main 8080 restarted after backup `data/backups/stayos-before-security-refactor-20261022.sqlite`, fingerprint identical before and after.
 
 Screenshot: `r16-assistant.png`.
+
+## Round 17 (2026-10-22): real business data, AI photos, password reset, privacy page
+
+Requested by the user: GitHub repo, city TP. Hồ Chí Minh, hotline 0335858424, AI photos, "do the rest".
+
+- **Business data:** both properties now show TP. Hồ Chí Minh and the hotline (footer, assistant, reset form, privacy page). Street address stays "chưa cập nhật". The beach-distance line is gone. The Vũng Tàu walking tour is paused in both service catalogs (server answers 409 with the reason; old bookings keep it), and the airport transfer text now says Ho Chi Minh City.
+- **AI photos:** Phòng bốn now has a four-view AI illustration set cut from the existing concept sheet (scripts/prepare-review-images.py), shown for every room of that type with "Ảnh minh họa do AI tạo theo loại phòng" on each image, in the gallery and in the footer. Canva generation produced four more images, but only 199 px previews are downloadable without a Canva login and the credit quota then ran out, so they are not used.
+- **Bug found:** the earlier restructure broke the Studio photo glob path (0 images in the build). Fixed, with a build test that fails if room photos disappear again.
+- **Password reset:** "Quên mật khẩu?" opens a form for email + one-time code + new password; staff issue the code in the console after a phone check.
+- **Privacy page:** footer link "Chính sách dữ liệu cá nhân", describing exactly what is stored, marked as a draft for legal review.
+- **Security:** the web README published the real admin e-mail with the demo password `change-me-now`, and that password still works on the main server. The README and source no longer contain the e-mail; the server now refuses public mode while an admin keeps a demo password.
+- **Repository:** `.gitignore` keeps data/, backups, tools, raw assets and archive out of the public repo (an unanchored `data/` pattern initially excluded the room catalog; fixed).
+
+Checks: 73 web tests, 37 Java tests; main 8080 restarted twice after backups, fingerprint identical each time.

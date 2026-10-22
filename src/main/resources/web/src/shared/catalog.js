@@ -16,4 +16,7 @@ export const services = inventory.services.map(service => ({ ...service,
   description: serviceDescriptions[service.id] || 'Phạm vi phục vụ chưa được xác nhận.',
   unitLabel: '/ 1 yêu cầu demo · chưa xác nhận định mức phục vụ',
 }));
+/** Services marked "available": false (paused) stay readable on old bookings but are never offered again. */
+export const bookable = list => list.filter(item => item.available !== false);
+export const hotline = inventory.properties.find(p => p.phone)?.phone || null;
 export const money = n => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(n);

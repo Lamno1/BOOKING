@@ -283,6 +283,19 @@ class BookingApiTest {
     var shorter=send(guest,"bookings/"+id+"/change-quote",Map.of("arrival",day(1),"departure",day(2)));assertEquals(409,shorter.statusCode(),shorter.body());assertTrue(shorter.body().contains("ngoài ngày ở mới"));
     assertEquals(200,send(guest,"bookings/"+id+"/change-quote",Map.of("arrival",day(1),"departure",day(4))).statusCode());
   }
+  @Test void pausedServicesCannotBeAddedInEitherCatalog()throws Exception{
+    var guest=guest("paused@example.test");
+    var classic=booking("tidal",2,750000*2+450000,"paused-classic");classic.put("addons",List.of("tour"));
+    var refused=send(guest,"bookings",classic);assertEquals(409,refused.statusCode());assertTrue(body(refused).get("error").getAsString().contains("Tạm ngưng"));
+    var created=send(guest,"bookings",booking("tidal",2,1500000,"paused-base"));assertEquals(201,created.statusCode());String id=body(created).get("id").getAsString();
+    long at=LocalDate.now(BookingService.ZONE).plusDays(2).atTime(9,0).atZone(BookingService.ZONE).toInstant().toEpochMilli();
+    assertEquals(409,send(guest,"services",Map.of("bookingId",id,"serviceId","tour","start",at)).statusCode());
+    var pkg=booking("tidal",2,1500000+450000,"paused-package");
+    pkg.put("offerVersion","review-02.1-2026-10-17");pkg.put("planId","welcome");pkg.put("demoAcknowledged",true);
+    pkg.put("quantities",Map.of("tour",1));pkg.put("schedules",Map.of("tour",Map.of("date",day(2),"time","07:00")));
+    var pkgRefused=send(guest,"bookings",pkg);assertEquals(409,pkgRefused.statusCode());assertTrue(body(pkgRefused).get("error").getAsString().contains("Tạm ngưng"),pkgRefused.body());
+    var addRefused=send(guest,"services",Map.of("bookingId",id,"serviceId","tour","start",at));assertTrue(body(addRefused).get("error").getAsString().contains("Tạm ngưng"),addRefused.body());
+  }
   @Test void packageBookingAddsServicesFromOfferCatalogWithQuantitiesAndWindows()throws Exception{
     var guest=guest("package-addon@example.test");var other=guest("package-intruder@example.test");var input=booking("tidal",4,1500000,"package-addon");
     input.put("offerVersion","review-02.1-2026-10-17");input.put("planId","welcome");input.put("demoAcknowledged",true);

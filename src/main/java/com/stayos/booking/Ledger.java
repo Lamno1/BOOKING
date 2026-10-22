@@ -66,6 +66,12 @@ final class Ledger implements AutoCloseable {
       return value.getAsBigDecimal().longValueExact();
     }catch(Exception e){throw new Failure(400,"Trường "+key+" phải là số nguyên.");}
   }
+  /** A catalog service marked "available": false can no longer be added; bookings that already have it keep it. */
+  static JsonObject bookable(JsonObject service){
+    if(service.has("available")&&!service.get("available").getAsBoolean())
+      throw new Failure(409,service.has("unavailableReason")?service.get("unavailableReason").getAsString():"Dịch vụ này đang tạm ngưng.");
+    return service;
+  }
   static void requireAdmin(User user){if(!"admin".equals(user.role()))throw new Failure(403,"Bạn không có quyền quản trị.");}
   JsonObject item(String list,String id){
     for(var element:inventory.getAsJsonArray(list))if(element.getAsJsonObject().get("id").getAsString().equals(id))return element.getAsJsonObject();

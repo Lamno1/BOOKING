@@ -65,14 +65,14 @@ const intents=[
  {id:'payment',words:['thanh toan','tra tien','chuyen khoan','the tin dung','momo','visa','tien mat','hoa don'],reply:ctx=>({
   text:`${ctx.properties[0]?.policy?.payment||'Thanh toán theo hướng dẫn trên đơn.'} Biên nhận từng đơn tải được trong Kỳ nghỉ của tôi.`,actions:[]})},
  {id:'services',words:['dich vu','don san bay','dua don','spa','massage','an toi','bua toi','tour','tham quan'],reply:ctx=>({
-  text:['Dịch vụ thêm (đặt theo từng đơn, nhân viên xác nhận lịch):',...ctx.services.map(s=>`• ${s.name}: ${vnd(s.price)}`),'Trợ lý không tự thêm dịch vụ hay tính phí.'].join('\n'),
+  text:['Dịch vụ thêm (đặt theo từng đơn, nhân viên xác nhận lịch):',...ctx.services.filter(s=>s.available!==false).map(s=>`• ${s.name}: ${vnd(s.price)}`),'Trợ lý không tự thêm dịch vụ hay tính phí.'].join('\n'),
   actions:[go('experiences','Xem & đặt dịch vụ')]})},
  {id:'address',words:['dia chi','o dau','ban do','duong nao','vi tri','google map','chi duong','toa do'],reply:ctx=>({
   text:ctx.properties.map(p=>`• ${p.name}: ${p.address||p.addressStatus}${p.mapUrl?` · ${p.mapUrl}`:''}`).join('\n')+(ctx.properties.some(p=>!p.address)?'\nNhân viên có thể gửi hướng dẫn đường đi khi bạn hỏi.':''),
   actions:ctx.properties.some(p=>!p.address)?[staff('INQUIRY','Hỏi nhân viên đường đi')]:[]})},
  {id:'parking',words:['do xe','gui xe','bai xe','o to','oto','xe may','cho dau'],reply:ctx=>({
   text:ctx.properties.map(p=>`• ${p.name}: ${p.parking}`).join('\n'),actions:[staff('INQUIRY','Hỏi nhân viên về đỗ xe')]})},
- {id:'beach',words:['bai bien','ra bien','gan bien','xa bien','cach bien','bai tam','view bien'],reply:ctx=>({text:ctx.properties.map(p=>`• ${p.name}: ${p.beachDistance}`).join('\n'),actions:[staff('INQUIRY')]})},
+ {id:'beach',words:['bai bien','ra bien','gan bien','xa bien','cach bien','bai tam','view bien'],reply:ctx=>({text:ctx.properties.map(p=>`• ${p.name} (${p.city}): ${p.beachDistance||'chưa có thông tin đi biển'}`).join('\n'),actions:[staff('INQUIRY')]})},
  {id:'wifi',words:['wifi','wi fi','mat khau wifi','internet'],reply:()=>({
   text:'Mật khẩu Wi-Fi không được lưu trong ứng dụng. Nhân viên gửi cho bạn qua cuộc trò chuyện khi bạn đã có đơn đặt.',actions:[staff('WIFI','Xin mật khẩu Wi-Fi')]})},
  {id:'kids',words:['tre em','em be','tre nho','giuong phu','cai noi','noi em be','co be','be trai','be gai','con nho'],reply:ctx=>({

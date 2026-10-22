@@ -55,12 +55,12 @@ data/backups/*.sqlite*
 
 # --- 2026-10-22: public GitHub repo hygiene ---
 # Guest data, ledgers and anything under data/ stay on the server only.
-data/
+/data/
 # Local toolchains and raw 3D/GIS assets (hundreds of MB, not needed to build the booking app).
-tools/
-assets/
+/tools/
+/assets/
 # Local source snapshots made before refactors.
-archive/
+/archive/
 # Scratch QA captures and recordings at the project and web roots.
 /qa-*.png
 src/main/resources/web/qa-*

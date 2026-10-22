@@ -32,4 +32,5 @@ abstract class Feature {
   static String optionalText(JsonObject in,String key,int max){return Ledger.optionalText(in,key,max);}
   static long number(JsonObject in,String key){return Ledger.number(in,key);}
   static void requireAdmin(User user){Ledger.requireAdmin(user);}
+  static JsonObject bookable(JsonObject service){return Ledger.bookable(service);}
 }

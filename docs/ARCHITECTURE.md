@@ -31,6 +31,8 @@ src/main/resources/web/src/
   features/support/ chat box (SupportChat), automatic assistant (support-assistant.js), date-change panel, receipts
   features/reviews/ public reviews and the review form
   features/admin/   staff console panels: today, bookings, support queue, reviews, staff notes
+  features/account/ password reset with a staff-issued code
+  features/legal/   privacy policy page (keep in sync with what the code stores)
 ```
 
 Rule of thumb: UI in `*.jsx`, rules and calculations in a `*-domain.js` / `*-assistant.js` file next to it with no React, so they are unit tested in `tests/`.

@@ -70,12 +70,20 @@ Frontend: 165 fps scrolling on desktop and on a 4× CPU-throttled phone profile,
 
 A homestay or small hotel site is nowhere near these limits. The real ceiling is one machine and one SQLite file: for several properties with heavy traffic, move to PostgreSQL and run more than one instance (sessions and rate limits would then need a shared store).
 
-## Not done yet (needed before taking real guests)
+## Operations
 
-- Version control: the project folder is not a git repository. Initialise one before further work.
-- Real business data: address, map, phone, parking, photos are still unconfirmed placeholders.
-- Payments: none; the policy text says no money is collected.
-- Password reset by email and email confirmations: not implemented (no mail service configured).
-- Monitoring and alerting: only stderr logs; add uptime checks and log collection.
-- Off-site backups: daily snapshots stay on the same disk.
-- Legal pages: privacy policy and terms for guest data (Vietnamese Decree 13/2023 on personal data).
+- Health: `GET /api/health` runs a query on the ledger and answers 503 if the database is unavailable; point an uptime monitor at it.
+- Access log: one line per API call on stdout (time, method, path, status, ms); no query strings, bodies, cookies or IP addresses. `STAYOS_ACCESS_LOG=off` disables it.
+- Password reset without email: the guest calls the hotline; staff verify identity and press "Cấp mã đặt lại" in Tài khoản; the 10-character code is valid 30 minutes, used once, stored only as a hash, and wrong codes count toward the account lockout. Issued codes are written to `account_audit`.
+- Startup refuses public mode (`STAYOS_BIND` not loopback, `STAYOS_SECURE_COOKIE` or `STAYOS_TRUST_PROXY` set) while any admin still uses a demo default password.
+- Off-site backups: set `STAYOS_BACKUP_DIR` to a folder synced to another machine or cloud drive.
+
+## Not done yet
+
+- Admin password: the main server's admin still uses the published demo password. Change it in Tài khoản before going public (the server refuses to start in public mode until then).
+- Address: street and number are not set; city (TP. Hồ Chí Minh) and hotline (0335858424) are.
+- Photos: AI illustrations exist for Studio and Phòng bốn only; other room types show the amenity diagram. Real photos should replace all of them.
+- The walking tour service is paused (its route was in Vũng Tàu) until a Ho Chi Minh City offer is confirmed; prices of other services are unchanged and still need the owner's confirmation.
+- Payments: none; the policy text says no money is collected online.
+- Email (confirmations, self-service reset): needs an SMTP or mail API account.
+- Legal: the privacy policy page is a draft to be reviewed and completed with the legal entity name, tax code and address.

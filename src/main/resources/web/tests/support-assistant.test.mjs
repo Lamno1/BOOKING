@@ -57,3 +57,11 @@ test('personal answers use only the signed-in guest\'s own bookings',()=>{
  const times=assistantReply('mấy giờ check in',{...base,user:{},bookings:[booking]});
  assert.match(times.text,/25\/10\/2026/);
 });
+test('hotline and city come from the catalog; paused services are not offered',()=>{
+ const human=assistantReply('cho mình số điện thoại',base);
+ assert.match(human.text,/0335858424/);
+ const services=assistantReply('có dịch vụ gì',base);
+ assert.doesNotMatch(services.text,/Khám phá Vũng Tàu/);assert.match(services.text,/Đón sân bay/);
+ const beach=assistantReply('có gần biển không',base);
+ assert.match(beach.text,/TP\. Hồ Chí Minh/);assert.match(beach.text,/chưa có thông tin/);
+});

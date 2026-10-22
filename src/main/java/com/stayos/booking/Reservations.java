@@ -33,7 +33,7 @@ final class Reservations extends Feature {
     var addons=new LinkedHashSet<String>();
     if(input.has("addons")){
       if(!input.get("addons").isJsonArray() || input.getAsJsonArray("addons").size()>4)throw new Failure(400,"Danh sách dịch vụ chưa hợp lệ.");
-      for(var addon:input.getAsJsonArray("addons")){if(!addon.isJsonPrimitive() || !addon.getAsJsonPrimitive().isString())throw new Failure(400,"Dịch vụ chưa hợp lệ."); item("services",addon.getAsString()); addons.add(addon.getAsString());}
+      for(var addon:input.getAsJsonArray("addons")){if(!addon.isJsonPrimitive() || !addon.getAsJsonPrimitive().isString())throw new Failure(400,"Dịch vụ chưa hợp lệ."); bookable(item("services",addon.getAsString())); addons.add(addon.getAsString());}
     }
     var details=new JsonObject();applyArrivalDetails(details,input);
     long roomTotal=room.get("price").getAsLong()*nights;

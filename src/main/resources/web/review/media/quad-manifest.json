@@ -1,0 +1,107 @@
+{
+  "source": "inn-quad-concept-v2.png",
+  "sourceBytes": 2424286,
+  "sourceSize": [
+    1448,
+    1086
+  ],
+  "aiGenerated": true,
+  "files": [
+    {
+      "name": "quad-0-thumb.webp",
+      "width": 160,
+      "height": 120,
+      "bytes": 2344
+    },
+    {
+      "name": "quad-0-small.webp",
+      "width": 400,
+      "height": 300,
+      "bytes": 13924
+    },
+    {
+      "name": "quad-0-preview.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 34054
+    },
+    {
+      "name": "quad-0-large.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 62562
+    },
+    {
+      "name": "quad-1-thumb.webp",
+      "width": 160,
+      "height": 120,
+      "bytes": 2202
+    },
+    {
+      "name": "quad-1-small.webp",
+      "width": 400,
+      "height": 300,
+      "bytes": 10888
+    },
+    {
+      "name": "quad-1-preview.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 24568
+    },
+    {
+      "name": "quad-1-large.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 45418
+    },
+    {
+      "name": "quad-2-thumb.webp",
+      "width": 160,
+      "height": 120,
+      "bytes": 1810
+    },
+    {
+      "name": "quad-2-small.webp",
+      "width": 400,
+      "height": 300,
+      "bytes": 9916
+    },
+    {
+      "name": "quad-2-preview.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 25140
+    },
+    {
+      "name": "quad-2-large.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 49466
+    },
+    {
+      "name": "quad-3-thumb.webp",
+      "width": 160,
+      "height": 120,
+      "bytes": 2202
+    },
+    {
+      "name": "quad-3-small.webp",
+      "width": 400,
+      "height": 300,
+      "bytes": 11450
+    },
+    {
+      "name": "quad-3-preview.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 27104
+    },
+    {
+      "name": "quad-3-large.webp",
+      "width": 724,
+      "height": 543,
+      "bytes": 51508
+    }
+  ]
+}

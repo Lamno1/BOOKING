@@ -38,7 +38,10 @@ public final class AuthServer {
   public Router router(){return router;}
   public void start(){server.start();}
   public void stop(){server.stop(0);executor.shutdownNow();}
+  /** One line per API call (method, path, status, time); no query strings, bodies or cookies. Enabled by ApiMain unless STAYOS_ACCESS_LOG=off. */
+  private static final boolean ACCESS_LOG=Boolean.getBoolean("stayos.accessLog");
   private void handle(HttpExchange x)throws IOException{
+    long started=System.nanoTime();
     try {
       SecurityHeaders.apply(x.getResponseHeaders());
       x.getResponseHeaders().set("Content-Security-Policy","default-src 'none'; frame-ancestors 'none'");
@@ -69,13 +72,13 @@ public final class AuthServer {
     }catch(Failure e){send(x,e.status,Map.of("error",e.getMessage()));}
     catch(IllegalArgumentException e){send(x,400,Map.of("error","Dữ liệu chưa hợp lệ."));}
     catch(Exception e){System.err.println("API error "+x.getRequestMethod()+" "+x.getRequestURI().getPath()+": "+e.getClass().getSimpleName()+" "+e.getMessage());send(x,500,Map.of("error","Không thể lưu dữ liệu lúc này. Vui lòng thử lại."));}
-    finally{x.close();}
+    finally{x.close();if(ACCESS_LOG)System.out.println(java.time.Instant.now()+" "+x.getRequestMethod()+" "+x.getRequestURI().getPath()+" "+x.getResponseCode()+" "+(System.nanoTime()-started)/1_000_000+"ms");}
   }
   /** Every API endpoint, grouped by feature. Handlers stay one line: validation and rules live in the services. */
   private Router routes(){
     var r=new Router();
     // Public catalog
-    r.get("/api/health",Access.PUBLIC,c->Map.of("status","ok","auth",true,"booking",true));
+    r.get("/api/health",Access.PUBLIC,c->{if(!booking.ping())throw new Failure(503,"Cơ sở dữ liệu chưa sẵn sàng.");return Map.of("status","ok","auth",true,"booking",true);});
     r.get("/api/availability",Access.PUBLIC,c->booking.availability(c.query("arrival",""),c.query("departure","")));
     r.get("/api/rooms/{room}/calendar",Access.PUBLIC,c->booking.calendar(c.param(0),c.query("from",""),days(c.query("days","60"))));
     r.get("/api/rooms/{room}/reviews",Access.PUBLIC,c->booking.roomReviews(c.param(0)));
@@ -83,6 +86,9 @@ public final class AuthServer {
     // Account and session
     r.post("/api/auth/login",Access.PUBLIC,c->signIn(c,false)).limited();
     r.create("/api/auth/register",Access.PUBLIC,c->signIn(c,true)).limited();
+    r.post("/api/auth/reset",Access.PUBLIC,c->{
+      if(!auth.resetWithCode(BookingService.text(c.input(),"email",254),secret(c.input(),"code"),secret(c.input(),"newPassword")))throw new Failure(400,"Mã không đúng, đã dùng hoặc đã hết hạn, hoặc mật khẩu mới chưa đủ 12 ký tự.");
+      return Map.of("ok",true);}).limited();
     r.get("/api/auth/me",Access.SIGNED_IN,c->Map.of("user",c.user()));
     r.post("/api/auth/logout",Access.SIGNED_IN,c->{auth.logout(token(c.exchange()));cookie(c.exchange(),"",0);return Map.of("ok",true);});
     r.post("/api/auth/password",Access.SIGNED_IN,c->{
@@ -110,6 +116,7 @@ public final class AuthServer {
     r.get("/api/admin/state",Access.SIGNED_IN,c->booking.state(c.user(),true));
     r.get("/api/admin/users",Access.SIGNED_IN,c->Map.of("users",auth.users(c.user())));
     r.post("/api/admin/users/status",Access.SIGNED_IN,c->{auth.setStatus(c.user(),BookingService.text(c.input(),"email",254),BookingService.text(c.input(),"status",20));return Map.of("ok",true);});
+    r.post("/api/admin/users/reset-code",Access.SIGNED_IN,c->Map.of("code",auth.issueResetCode(c.user(),BookingService.text(c.input(),"email",254)),"expiresInMinutes",30)).limited();
     r.get("/api/admin/rooms",Access.SIGNED_IN,c->booking.operations(c.user(),c.query("arrival",""),c.query("departure","")));
     r.post("/api/admin/rooms/status",Access.SIGNED_IN,c->booking.setRoomOperation(c.user(),c.input()));
     r.post("/api/admin/bookings/{id}/note",Access.SIGNED_IN,c->booking.setStaffNote(c.user(),c.param(0),c.input()));

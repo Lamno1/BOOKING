@@ -47,4 +47,6 @@ export const createSupport = body => post('support',body);
 export const replySupport = (id,message) => post(`support/${encodeURIComponent(id)}/messages`,{message});
 export const cancelSupport = id => post(`support/${encodeURIComponent(id)}/cancel`);
 export const quoteDateChange = (id,body) => post(`bookings/${encodeURIComponent(id)}/change-quote`,body);
+export const resetPassword = (email, code, newPassword) => post('auth/reset', {email, code, newPassword});
+export const issueResetCode = email => post('admin/users/reset-code', {email});
 export const saveStaffNote = (id, note) => post(`admin/bookings/${encodeURIComponent(id)}/note`, {note});

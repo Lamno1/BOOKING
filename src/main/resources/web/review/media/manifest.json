@@ -1,9 +1,11 @@
 {
+  "source": "studio-concept-v2.png",
   "sourceBytes": 2509064,
   "sourceSize": [
     1448,
     1086
   ],
+  "aiGenerated": true,
   "files": [
     {
       "name": "studio-0-thumb.webp",
